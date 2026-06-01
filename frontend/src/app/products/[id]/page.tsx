@@ -11,6 +11,11 @@ import { useState, useEffect } from "react";
 import { ShoppingCart, Package } from "lucide-react";
 import Image from "next/image";
 
+// Requis pour output: 'export' avec routes dynamiques
+export function generateStaticParams() {
+  return [];
+}
+
 export default function ProductDetailPage() {
   const { id } = useParams();
   const { user } = useAuthStore();
@@ -75,7 +80,6 @@ export default function ProductDetailPage() {
   return (
     <div className="space-y-12">
       <div className="grid md:grid-cols-2 gap-8">
-        {/* Images */}
         <div className="space-y-3">
           <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100">
             <Image
@@ -105,32 +109,26 @@ export default function ProductDetailPage() {
           )}
         </div>
 
-        {/* Infos */}
         <div className="space-y-4">
           <div>
             <p className="text-sm text-gray-500">{product.sellerNomBoutique}</p>
             <h1 className="text-2xl font-bold text-gray-900">{product.nom}</h1>
           </div>
-
           <div className="flex items-center gap-3">
             <RatingStars rating={product.noteMoyenne} size={18} />
             <span className="text-sm text-gray-500">
               {product.noteMoyenne.toFixed(1)} ({reviews?.totalElements ?? 0} avis)
             </span>
           </div>
-
           <div className="flex items-baseline gap-3">
             <span className="text-3xl font-bold text-gray-900">{currentPrice.toFixed(2)} €</span>
             {product.enPromotion && (
               <span className="text-xl text-gray-400 line-through">{product.prix.toFixed(2)} €</span>
             )}
           </div>
-
           {product.description && (
             <p className="text-gray-600 leading-relaxed">{product.description}</p>
           )}
-
-          {/* Variantes */}
           {Object.entries(variantGroups).map(([attribut, variants]) => (
             <div key={attribut}>
               <p className="text-sm font-medium text-gray-700 mb-2">{attribut}</p>
@@ -152,16 +150,12 @@ export default function ProductDetailPage() {
               </div>
             </div>
           ))}
-
-          {/* Stock */}
           <div className="flex items-center gap-2 text-sm">
             <Package size={16} className={product.stock > 0 ? "text-green-500" : "text-red-500"} />
             <span className={product.stock > 0 ? "text-green-600" : "text-red-600"}>
               {product.stock > 0 ? `${product.stock} en stock` : "Rupture de stock"}
             </span>
           </div>
-
-          {/* Catégories */}
           {product.categories.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {product.categories.map((c) => (
@@ -171,8 +165,6 @@ export default function ProductDetailPage() {
               ))}
             </div>
           )}
-
-          {/* Bouton panier */}
           {mounted && user && (
             <button
               onClick={handleAddToCart}
@@ -186,7 +178,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Avis */}
       <section>
         <h2 className="text-xl font-bold text-gray-900 mb-4">
           Avis clients ({reviews?.totalElements ?? 0})
