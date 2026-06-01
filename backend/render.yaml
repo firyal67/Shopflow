@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: shopflow-backend
+    runtime: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/shopflow-backend-1.0.0.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shopflow-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://shopflow-frontend.pages.dev
+    healthCheckPath: /api/products
+
+databases:
+  - name: shopflow-db
+    databaseName: shopflowdb
+    user: shopflow
