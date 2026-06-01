@@ -2,11 +2,6 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-
-// Requis pour output: 'export' avec routes dynamiques
-export function generateStaticParams() {
-  return [];
-}
 import api from "@/lib/axios";
 import OrderStatusBadge from "@/components/ui/OrderStatusBadge";
 import { Order } from "@/types";

@@ -2,11 +2,6 @@
 
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useRouter, useParams } from "next/navigation";
-
-// Requis pour output: 'export' avec routes dynamiques
-export function generateStaticParams() {
-  return [];
-}
 import api from "@/lib/axios";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
