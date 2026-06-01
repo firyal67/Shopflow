@@ -5,8 +5,6 @@ const nextConfig = {
       { protocol: 'https', hostname: '**' },
     ],
   },
-  // Nécessaire pour Cloudflare Pages
-  output: 'standalone',
 };
 
 module.exports = nextConfig;
