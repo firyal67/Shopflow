@@ -11,11 +11,6 @@ import { useState, useEffect } from "react";
 import { ShoppingCart, Package } from "lucide-react";
 import Image from "next/image";
 
-// Requis pour output: 'export' avec routes dynamiques
-export function generateStaticParams() {
-  return [];
-}
-
 export default function ProductDetailPage() {
   const { id } = useParams();
   const { user } = useAuthStore();
