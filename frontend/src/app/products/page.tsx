@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams, useRouter } from "next/navigation";
 import api from "@/lib/axios";
@@ -19,7 +20,7 @@ const SORT_OPTIONS = [
   { label: "Meilleures notes", value: "noteMoyenne,desc" },
 ];
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { user } = useAuthStore();
@@ -53,7 +54,6 @@ export default function ProductsPage() {
       if (prixMin) params.set("prixMin", prixMin);
       if (prixMax) params.set("prixMax", prixMax);
 
-      // Recherche full-text ou liste filtrée
       const endpoint = q
         ? `/api/products/search?q=${encodeURIComponent(q)}&${params}`
         : `/api/products?${params}`;
@@ -210,8 +210,6 @@ export default function ProductsPage() {
           <p className="text-sm text-gray-500 shrink-0">
             {isLoading ? "Chargement..." : `${data?.totalElements ?? 0} produit(s)`}
           </p>
-
-          {/* Tri */}
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-500 hidden sm:inline">Trier par :</span>
             <select
@@ -319,5 +317,17 @@ export default function ProductsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+        {Array(12).fill(0).map((_, i) => <ProductCardSkeleton key={i} />)}
+      </div>
+    }>
+      <ProductsContent />
+    </Suspense>
   );
 }
