@@ -63,50 +63,50 @@ public class DataInitializer implements ApplicationRunner {
         sellerProfileRepository.save(SellerProfile.builder()
                 .user(vendeur1).nomBoutique("Mode & Style")
                 .description("Vêtements tendance pour homme et femme, qualité premium")
-                .logo("https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=200").note(4.5).build());
+                .logo("https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=200&fit=crop").note(4.5).build());
 
         sellerProfileRepository.save(SellerProfile.builder()
                 .user(vendeur2).nomBoutique("Tech Universe")
                 .description("Accessoires et gadgets high-tech au meilleur prix")
-                .logo("https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=200").note(4.2).build());
+                .logo("https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=200&fit=crop").note(4.2).build());
 
         sellerProfileRepository.save(SellerProfile.builder()
                 .user(vendeur3).nomBoutique("Beauté Naturelle")
                 .description("Cosmétiques et soins naturels, cruelty-free")
-                .logo("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200").note(4.8).build());
+                .logo("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&fit=crop").note(4.8).build());
 
         // ── Adresses ──────────────────────────────────────────────────────────
         addressRepository.save(Address.builder().user(client1).rue("12 Rue de la Paix")
                 .ville("Paris").codePostal("75001").pays("France").principal(true).build());
 
         // ── Catégories ────────────────────────────────────────────────────────
-        Category vetements  = categoryRepository.save(Category.builder().nom("Vêtements").description("Mode et habillement").build());
+        Category vetements   = categoryRepository.save(Category.builder().nom("Vêtements").description("Mode et habillement").build());
         Category electronique = categoryRepository.save(Category.builder().nom("Électronique").description("Appareils et accessoires tech").build());
-        Category beaute     = categoryRepository.save(Category.builder().nom("Beauté & Soins").description("Cosmétiques et soins du corps").build());
-        Category sport      = categoryRepository.save(Category.builder().nom("Sport").description("Équipements et vêtements de sport").build());
-        Category maison     = categoryRepository.save(Category.builder().nom("Maison").description("Décoration et mobilier").build());
+        Category beaute      = categoryRepository.save(Category.builder().nom("Beauté & Soins").description("Cosmétiques et soins du corps").build());
+        Category sport       = categoryRepository.save(Category.builder().nom("Sport").description("Équipements et vêtements de sport").build());
+        categoryRepository.save(Category.builder().nom("Maison").description("Décoration et mobilier").build());
 
-        Category tshirts    = categoryRepository.save(Category.builder().nom("T-Shirts").description("T-shirts et hauts").parent(vetements).build());
-        Category pantalons  = categoryRepository.save(Category.builder().nom("Pantalons").description("Jeans et pantalons").parent(vetements).build());
-        Category robes      = categoryRepository.save(Category.builder().nom("Robes").description("Robes et jupes").parent(vetements).build());
-        Category vestes     = categoryRepository.save(Category.builder().nom("Vestes").description("Vestes et manteaux").parent(vetements).build());
-        Category audio      = categoryRepository.save(Category.builder().nom("Audio").description("Casques et écouteurs").parent(electronique).build());
-        Category accessTech = categoryRepository.save(Category.builder().nom("Accessoires Tech").description("Accessoires pour appareils").parent(electronique).build());
-        Category smartphones = categoryRepository.save(Category.builder().nom("Smartphones").description("Téléphones mobiles").parent(electronique).build());
-        Category soinsPeau  = categoryRepository.save(Category.builder().nom("Soins Peau").description("Crèmes et sérums").parent(beaute).build());
-        Category sportVet   = categoryRepository.save(Category.builder().nom("Vêtements Sport").description("Tenues de sport").parent(sport).build());
+        Category tshirts     = categoryRepository.save(Category.builder().nom("T-Shirts").description("T-shirts et hauts").parent(vetements).build());
+        Category pantalons   = categoryRepository.save(Category.builder().nom("Pantalons").description("Jeans et pantalons").parent(vetements).build());
+        Category robes       = categoryRepository.save(Category.builder().nom("Robes").description("Robes et jupes").parent(vetements).build());
+        Category vestes      = categoryRepository.save(Category.builder().nom("Vestes").description("Vestes et manteaux").parent(vetements).build());
+        Category audio       = categoryRepository.save(Category.builder().nom("Audio").description("Casques et écouteurs").parent(electronique).build());
+        Category accessTech  = categoryRepository.save(Category.builder().nom("Accessoires Tech").description("Accessoires pour appareils").parent(electronique).build());
+        categoryRepository.save(Category.builder().nom("Smartphones").description("Téléphones mobiles").parent(electronique).build());
+        Category soinsPeau   = categoryRepository.save(Category.builder().nom("Soins Peau").description("Crèmes et sérums").parent(beaute).build());
+        Category sportVet    = categoryRepository.save(Category.builder().nom("Vêtements Sport").description("Tenues de sport").parent(sport).build());
 
         // ── Produits Mode & Style ─────────────────────────────────────────────
 
-        // T-shirt blanc classique
+        // T-shirt blanc
         Product p1 = Product.builder()
                 .seller(vendeur1).nom("T-Shirt Essentiel Blanc")
                 .description("T-shirt 100% coton bio, coupe droite confortable. Col rond renforcé, coutures doubles pour une durabilité optimale. Idéal au quotidien.")
                 .prix(new BigDecimal("24.99")).prixPromo(new BigDecimal("17.99"))
                 .stock(80).actif(true).noteMoyenne(4.6).totalVentes(340)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(vetements, tshirts)).build();
         p1.getVariants().addAll(List.of(
@@ -125,8 +125,8 @@ public class DataInitializer implements ApplicationRunner {
                 .description("Jean slim fit en denim stretch 98% coton, 2% élasthanne. Coupe moderne près du corps, 5 poches classiques. Disponible en bleu indigo.")
                 .prix(new BigDecimal("64.99")).stock(45).actif(true).noteMoyenne(4.3).totalVentes(185)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(vetements, pantalons)).build();
         p2.getVariants().addAll(List.of(
@@ -145,8 +145,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("49.99")).prixPromo(new BigDecimal("37.99"))
                 .stock(30).actif(true).noteMoyenne(4.7).totalVentes(95)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(vetements, robes)).build();
         p3.getVariants().addAll(List.of(
@@ -164,8 +164,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99"))
                 .stock(25).actif(true).noteMoyenne(4.5).totalVentes(72)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1601333144130-8cbb312386b6?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(vetements, vestes)).build();
         p4.getVariants().addAll(List.of(
@@ -185,8 +185,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99"))
                 .stock(55).actif(true).noteMoyenne(4.6).totalVentes(420)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1598331668826-20cecc596b86?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(electronique, audio)).build();
         p5.getVariants().addAll(List.of(
@@ -203,8 +203,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("149.99")).prixPromo(new BigDecimal("119.99"))
                 .stock(30).actif(true).noteMoyenne(4.8).totalVentes(285)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(electronique, audio)).build();
         p6.getVariants().addAll(List.of(
@@ -219,18 +219,18 @@ public class DataInitializer implements ApplicationRunner {
                 .description("Chargeur GaN ultra-compact 65W avec 2 ports USB-C et 1 USB-A. Compatible Power Delivery 3.0, charge en 35 min un smartphone, 2h un laptop.")
                 .prix(new BigDecimal("39.99")).stock(120).actif(true).noteMoyenne(4.4).totalVentes(580)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1601999009162-2459b78386c9?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(electronique, accessTech)).build());
 
-        // Coque
+        // Coque iPhone
         Product p8 = Product.builder()
                 .seller(vendeur2).nom("Coque Protection iPhone 15 Pro")
                 .description("Coque MagSafe en silicone liquide premium, compatible recharge sans fil. Protection anti-choc coins renforcés, toucher soyeux, dos mat anti-traces.")
                 .prix(new BigDecimal("29.99")).prixPromo(new BigDecimal("22.99"))
                 .stock(90).actif(true).noteMoyenne(4.2).totalVentes(315)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(electronique, accessTech)).build();
         p8.getVariants().addAll(List.of(
@@ -249,8 +249,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("199.99")).prixPromo(new BigDecimal("159.99"))
                 .stock(40).actif(true).noteMoyenne(4.7).totalVentes(190)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1617043786394-f977fa12eddf?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(electronique, accessTech, sport)).build();
         p9.getVariants().addAll(List.of(
@@ -262,14 +262,14 @@ public class DataInitializer implements ApplicationRunner {
 
         // ── Produits Beauté Naturelle ──────────────────────────────────────────
 
-        // Sérum
+        // Sérum vitamine C
         productRepository.save(Product.builder()
                 .seller(vendeur3).nom("Sérum Vitamine C Éclat")
                 .description("Sérum concentré 15% vitamine C pure + acide hyaluronique. Texture légère à absorption rapide. Uniformise le teint, réduit les taches, protection antioxydante. 30ml.")
                 .prix(new BigDecimal("34.99")).prixPromo(new BigDecimal("27.99"))
                 .stock(60).actif(true).noteMoyenne(4.8).totalVentes(245)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(beaute, soinsPeau)).build());
 
@@ -279,18 +279,18 @@ public class DataInitializer implements ApplicationRunner {
                 .description("Crème riche formule douce sans parfum, sans paraben. Aloe vera bio + beurre de karité. Nourrit et apaise les peaux sensibles et réactives. 50ml.")
                 .prix(new BigDecimal("22.99")).stock(75).actif(true).noteMoyenne(4.6).totalVentes(168)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(beaute, soinsPeau)).build());
 
-        // Huile cheveux
+        // Huile argan
         productRepository.save(Product.builder()
                 .seller(vendeur3).nom("Huile Capillaire Argan Bio")
                 .description("Huile d'argan 100% pure et bio, pressée à froid. Nourrit, répare et fait briller les cheveux secs et abîmés. 2-3 gouttes suffisent. 30ml, certifiée COSMOS.")
                 .prix(new BigDecimal("19.99")).prixPromo(new BigDecimal("15.99"))
                 .stock(50).actif(true).noteMoyenne(4.7).totalVentes(132)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(beaute)).build());
 
@@ -302,8 +302,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("44.99")).prixPromo(new BigDecimal("34.99"))
                 .stock(55).actif(true).noteMoyenne(4.5).totalVentes(210)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&h=400&fit=crop",
-                        "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=400&fit=crop"
+                        "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=500&h=500&fit=crop&q=80",
+                        "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=500&h=500&fit=crop&q=80"
                 ))
                 .categories(Set.of(sport, sportVet, vetements)).build();
         p13.getVariants().addAll(List.of(
