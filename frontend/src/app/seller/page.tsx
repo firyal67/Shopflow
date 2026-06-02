@@ -291,9 +291,13 @@ export default function SellerDashboardPage() {
                           <Edit size={16} />
                         </button>
                         <button
-                          onClick={() => deactivateMutation.mutate(p.id)}
+                          onClick={() => {
+                            if (confirm(`Supprimer "${p.nom}" définitivement ?`)) {
+                              deactivateMutation.mutate(p.id);
+                            }
+                          }}
                           className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Désactiver"
+                          title="Supprimer"
                         >
                           <Trash2 size={16} />
                         </button>
