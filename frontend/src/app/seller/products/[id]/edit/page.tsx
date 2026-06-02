@@ -3,13 +3,14 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useRouter, useParams } from "next/navigation";
 import api from "@/lib/axios";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Category, Product } from "@/types";
 import { Plus, Trash2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
+import ImageManager from "@/components/ui/ImageManager";
 
 const variantSchema = z.object({
   attribut: z.string().min(1, "Attribut requis"),
@@ -24,7 +25,7 @@ const productSchema = z.object({
   prix: z.coerce.number().positive("Prix doit être positif"),
   prixPromo: z.coerce.number().optional().nullable(),
   stock: z.coerce.number().min(0),
-  images: z.string().optional(),
+  images: z.array(z.string()).optional(),
   categoryIds: z.array(z.coerce.number()).min(1, "Sélectionnez au moins une catégorie"),
   variants: z.array(variantSchema).optional(),
 });
@@ -66,7 +67,7 @@ export default function EditProductPage() {
         prix: product.prix,
         prixPromo: product.prixPromo ?? null,
         stock: product.stock,
-        images: product.images.join("\n"),
+        images: product.images || [],
         categoryIds: product.categories.map((c) => c.id),
         variants: product.variants.map((v) => ({
           attribut: v.attribut,
@@ -83,7 +84,7 @@ export default function EditProductPage() {
       const payload = {
         ...data,
         categoryIds: data.categoryIds.map(Number),
-        images: data.images ? data.images.split("\n").map((s) => s.trim()).filter(Boolean) : [],
+        images: data.images || [],
         prixPromo: data.prixPromo || null,
         variants: (data.variants || []).map(v => ({
           ...v,
@@ -146,10 +147,22 @@ export default function EditProductPage() {
             </div>
           </div>
 
-          <div>
-            <label className="label">Images (une URL par ligne)</label>
-            <textarea {...register("images")} className="input min-h-[80px]" />
-          </div>
+        </div>
+
+        {/* Gestionnaire d'images */}
+        <div className="card space-y-3">
+          <h2 className="font-semibold text-gray-900">Photos du produit</h2>
+          <Controller
+            control={control}
+            name="images"
+            render={({ field }) => (
+              <ImageManager
+                images={field.value || []}
+                onChange={field.onChange}
+                maxImages={5}
+              />
+            )}
+          />
         </div>
 
         {/* Catégories */}

@@ -3,12 +3,13 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import api from "@/lib/axios";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Category } from "@/types";
 import { Plus, Trash2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import ImageManager from "@/components/ui/ImageManager";
 
 const variantSchema = z.object({
   attribut: z.string().min(1, "Attribut requis"),
@@ -23,7 +24,7 @@ const productSchema = z.object({
   prix: z.coerce.number().positive("Prix doit être positif"),
   prixPromo: z.coerce.number().optional().nullable(),
   stock: z.coerce.number().min(0, "Stock ne peut pas être négatif"),
-  images: z.string().optional(),
+  images: z.array(z.string()).optional(),
   categoryIds: z.array(z.coerce.number()).min(1, "Sélectionnez au moins une catégorie"),
   variants: z.array(variantSchema).optional(),
 });
@@ -45,7 +46,7 @@ export default function NewProductPage() {
     formState: { errors },
   } = useForm<ProductForm>({
     resolver: zodResolver(productSchema),
-    defaultValues: { stock: 0, categoryIds: [], variants: [] },
+    defaultValues: { stock: 0, categoryIds: [], variants: [], images: [] },
   });
 
   const { fields, append, remove } = useFieldArray({ control, name: "variants" });
@@ -61,7 +62,7 @@ export default function NewProductPage() {
         categoryIds: Array.isArray(data.categoryIds)
           ? data.categoryIds.map((id) => Number(id)).filter((n) => !isNaN(n) && n > 0)
           : [],
-        images: data.images ? data.images.split("\n").map((s) => s.trim()).filter(Boolean) : [],
+        images: data.images || [],
         variants: (data.variants || []).map((v) => ({
           attribut: String(v.attribut),
           valeur: String(v.valeur),
@@ -79,7 +80,6 @@ export default function NewProductPage() {
   });
 
   const onSubmit = (data: ProductForm) => mutation.mutate(data);
-
   const allCategories = flattenCategories(categories ?? []);
 
   return (
@@ -123,12 +123,22 @@ export default function NewProductPage() {
               {errors.stock && <p className="text-red-500 text-xs mt-1">{errors.stock.message}</p>}
             </div>
           </div>
+        </div>
 
-          <div>
-            <label className="label">Images (une URL par ligne)</label>
-            <textarea {...register("images")} className="input min-h-[80px]" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg" />
-            <p className="text-xs text-gray-400 mt-1">Entrez des URLs d'images (ex: https://...). Les fichiers locaux ne sont pas supportés.</p>
-          </div>
+        {/* Gestionnaire d'images */}
+        <div className="card space-y-3">
+          <h2 className="font-semibold text-gray-900">Photos du produit</h2>
+          <Controller
+            control={control}
+            name="images"
+            render={({ field }) => (
+              <ImageManager
+                images={field.value || []}
+                onChange={field.onChange}
+                maxImages={5}
+              />
+            )}
+          />
         </div>
 
         {/* Catégories */}
@@ -192,7 +202,7 @@ export default function NewProductPage() {
 
         {mutation.isError && (
           <p className="text-red-500 text-sm bg-red-50 p-3 rounded-lg">
-            {(mutation.error as any)?.response?.data?.message || (mutation.error as any)?.message || "Erreur lors de la création du produit."}
+            {(mutation.error as any)?.response?.data?.message || "Erreur lors de la création du produit."}
           </p>
         )}
 
