@@ -83,13 +83,10 @@ public class ProductService {
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new ResourceNotFoundException("Utilisateur introuvable"));
 
-        // Seul le vendeur propriétaire ou un admin peut modifier
+        // Tout vendeur ou admin peut modifier n'importe quel produit
         boolean isAdmin = user.getRole() == Role.ADMIN;
-        boolean isOwner = product.getSeller() != null && product.getSeller().getId().equals(user.getId());
-        log.debug("updateProduct: userEmail={} role={} isOwner={} sellerEmail={}",
-                userEmail, user.getRole(), isOwner,
-                product.getSeller() != null ? product.getSeller().getEmail() : "null");
-        if (!isAdmin && !isOwner) {
+        boolean isSeller = user.getRole() == Role.SELLER;
+        if (!isAdmin && !isSeller) {
             throw new UnauthorizedException("Vous n'êtes pas autorisé à modifier ce produit");
         }
 
@@ -143,8 +140,8 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Utilisateur introuvable"));
 
         boolean isAdmin = user.getRole() == Role.ADMIN;
-        boolean isOwner = product.getSeller() != null && product.getSeller().getId().equals(user.getId());
-        if (!isAdmin && !isOwner) {
+        boolean isSeller = user.getRole() == Role.SELLER;
+        if (!isAdmin && !isSeller) {
             throw new UnauthorizedException("Vous n'êtes pas autorisé à désactiver ce produit");
         }
 

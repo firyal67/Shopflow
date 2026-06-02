@@ -35,7 +35,7 @@ export default function SellerDashboardPage() {
   });
 
   const { data: products } = useQuery({
-    queryKey: ["seller-products", user?.id],
+    queryKey: ["seller-products"],
     queryFn: () => api.get(`/api/products?size=100`).then((r) => r.data.content as Product[]),
     enabled: !!user?.id,
   });
