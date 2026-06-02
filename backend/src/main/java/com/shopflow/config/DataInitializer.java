@@ -63,17 +63,17 @@ public class DataInitializer implements ApplicationRunner {
         sellerProfileRepository.save(SellerProfile.builder()
                 .user(vendeur1).nomBoutique("Mode & Style")
                 .description("Vêtements tendance pour homme et femme, qualité premium")
-                .logo("https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=200&fit=crop").note(4.5).build());
+                .logo("https://images.pexels.com/photos/1884581/pexels-photo-1884581.jpeg?w=200").note(4.5).build());
 
         sellerProfileRepository.save(SellerProfile.builder()
                 .user(vendeur2).nomBoutique("Tech Universe")
                 .description("Accessoires et gadgets high-tech au meilleur prix")
-                .logo("https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=200&fit=crop").note(4.2).build());
+                .logo("https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?w=200").note(4.2).build());
 
         sellerProfileRepository.save(SellerProfile.builder()
                 .user(vendeur3).nomBoutique("Beauté Naturelle")
                 .description("Cosmétiques et soins naturels, cruelty-free")
-                .logo("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&fit=crop").note(4.8).build());
+                .logo("https://images.pexels.com/photos/3785147/pexels-photo-3785147.jpeg?w=200").note(4.8).build());
 
         // ── Adresses ──────────────────────────────────────────────────────────
         addressRepository.save(Address.builder().user(client1).rue("12 Rue de la Paix")
@@ -98,15 +98,15 @@ public class DataInitializer implements ApplicationRunner {
 
         // ── Produits Mode & Style ─────────────────────────────────────────────
 
-        // T-shirt blanc
+        // T-shirt blanc — photo d'un vrai t-shirt blanc
         Product p1 = Product.builder()
                 .seller(vendeur1).nom("T-Shirt Essentiel Blanc")
                 .description("T-shirt 100% coton bio, coupe droite confortable. Col rond renforcé, coutures doubles pour une durabilité optimale. Idéal au quotidien.")
                 .prix(new BigDecimal("24.99")).prixPromo(new BigDecimal("17.99"))
                 .stock(80).actif(true).noteMoyenne(4.6).totalVentes(340)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?white,tshirt",
-                        "https://source.unsplash.com/500x500/?cotton,shirt"
+                        "https://images.pexels.com/photos/5698851/pexels-photo-5698851.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(vetements, tshirts)).build();
         p1.getVariants().addAll(List.of(
@@ -119,14 +119,14 @@ public class DataInitializer implements ApplicationRunner {
         ));
         productRepository.save(p1);
 
-        // Jean slim
+        // Jean slim — photo d'un jean
         Product p2 = Product.builder()
                 .seller(vendeur1).nom("Jean Slim Fit Stretch")
                 .description("Jean slim fit en denim stretch 98% coton, 2% élasthanne. Coupe moderne près du corps, 5 poches classiques. Disponible en bleu indigo.")
                 .prix(new BigDecimal("64.99")).stock(45).actif(true).noteMoyenne(4.3).totalVentes(185)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?jeans,denim",
-                        "https://source.unsplash.com/500x500/?slim,jeans"
+                        "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/52518/jeans-pants-blue-shop-52518.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(vetements, pantalons)).build();
         p2.getVariants().addAll(List.of(
@@ -138,15 +138,15 @@ public class DataInitializer implements ApplicationRunner {
         ));
         productRepository.save(p2);
 
-        // Robe fleurie
+        // Robe fleurie — photo d'une robe à fleurs
         Product p3 = Product.builder()
                 .seller(vendeur1).nom("Robe Fleurie Légère")
                 .description("Robe fluide imprimé floral, 100% viscose douce au toucher. Col V, manches courtes, longueur mi-mollet. Parfaite pour les journées ensoleillées.")
                 .prix(new BigDecimal("49.99")).prixPromo(new BigDecimal("37.99"))
                 .stock(30).actif(true).noteMoyenne(4.7).totalVentes(95)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?floral,dress",
-                        "https://source.unsplash.com/500x500/?summer,dress"
+                        "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(vetements, robes)).build();
         p3.getVariants().addAll(List.of(
@@ -157,15 +157,15 @@ public class DataInitializer implements ApplicationRunner {
         ));
         productRepository.save(p3);
 
-        // Veste en jean
+        // Veste en jean — photo d'une veste denim
         Product p4 = Product.builder()
                 .seller(vendeur1).nom("Veste en Jean Oversize")
                 .description("Veste en denim délavé coupe oversize. Style vintage, poches poitrine, doublure intérieure légère. Un incontournable de la mode casual.")
                 .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99"))
                 .stock(25).actif(true).noteMoyenne(4.5).totalVentes(72)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?denim,jacket",
-                        "https://source.unsplash.com/500x500/?jean,jacket"
+                        "https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/2897531/pexels-photo-2897531.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(vetements, vestes)).build();
         p4.getVariants().addAll(List.of(
@@ -178,15 +178,15 @@ public class DataInitializer implements ApplicationRunner {
 
         // ── Produits Tech Universe ─────────────────────────────────────────────
 
-        // Écouteurs
+        // Écouteurs sans fil — vraie photo d'écouteurs TWS
         Product p5 = Product.builder()
                 .seller(vendeur2).nom("Écouteurs Sans Fil Pro ANC")
                 .description("Écouteurs true wireless avec réduction de bruit active (ANC). Autonomie 8h + 24h boîtier, résistance IPX5, son Hi-Fi avec graves profonds.")
                 .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99"))
                 .stock(55).actif(true).noteMoyenne(4.6).totalVentes(420)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?wireless,earbuds",
-                        "https://source.unsplash.com/500x500/?airpods,earphones"
+                        "https://images.pexels.com/photos/3780681/pexels-photo-3780681.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/8000626/pexels-photo-8000626.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(electronique, audio)).build();
         p5.getVariants().addAll(List.of(
@@ -196,15 +196,15 @@ public class DataInitializer implements ApplicationRunner {
         ));
         productRepository.save(p5);
 
-        // Casque audio
+        // Casque audio — photo d'un casque over-ear
         Product p6 = Product.builder()
                 .seller(vendeur2).nom("Casque Audio Bluetooth Over-Ear")
                 .description("Casque circum-aural Bluetooth 5.3, réduction de bruit active hybride. Autonomie 40h, charge rapide USB-C, pliable, coussinets en mousse à mémoire.")
                 .prix(new BigDecimal("149.99")).prixPromo(new BigDecimal("119.99"))
                 .stock(30).actif(true).noteMoyenne(4.8).totalVentes(285)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?headphones,bluetooth",
-                        "https://source.unsplash.com/500x500/?over,ear,headphones"
+                        "https://images.pexels.com/photos/577769/pexels-photo-577769.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(electronique, audio)).build();
         p6.getVariants().addAll(List.of(
@@ -213,24 +213,24 @@ public class DataInitializer implements ApplicationRunner {
         ));
         productRepository.save(p6);
 
-        // Chargeur
+        // Chargeur USB-C — photo d'un chargeur
         productRepository.save(Product.builder()
                 .seller(vendeur2).nom("Chargeur Rapide USB-C 65W GaN")
                 .description("Chargeur GaN ultra-compact 65W avec 2 ports USB-C et 1 USB-A. Compatible Power Delivery 3.0, charge en 35 min un smartphone, 2h un laptop.")
                 .prix(new BigDecimal("39.99")).stock(120).actif(true).noteMoyenne(4.4).totalVentes(580)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?usb,charger"
+                        "https://images.pexels.com/photos/4526418/pexels-photo-4526418.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(electronique, accessTech)).build());
 
-        // Coque iPhone
+        // Coque iPhone — photo d'une coque de téléphone
         Product p8 = Product.builder()
                 .seller(vendeur2).nom("Coque Protection iPhone 15 Pro")
                 .description("Coque MagSafe en silicone liquide premium, compatible recharge sans fil. Protection anti-choc coins renforcés, toucher soyeux, dos mat anti-traces.")
                 .prix(new BigDecimal("29.99")).prixPromo(new BigDecimal("22.99"))
                 .stock(90).actif(true).noteMoyenne(4.2).totalVentes(315)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?phone,case"
+                        "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(electronique, accessTech)).build();
         p8.getVariants().addAll(List.of(
@@ -242,15 +242,15 @@ public class DataInitializer implements ApplicationRunner {
         ));
         productRepository.save(p8);
 
-        // Montre connectée
+        // Montre connectée — photo d'une smartwatch
         Product p9 = Product.builder()
                 .seller(vendeur2).nom("Montre Connectée Sport Pro")
                 .description("Smartwatch GPS intégré, suivi cardiaque 24h, 100+ modes sportifs. Écran AMOLED 1.43\", autonomie 14 jours, résistance 5ATM, compatible iOS/Android.")
                 .prix(new BigDecimal("199.99")).prixPromo(new BigDecimal("159.99"))
                 .stock(40).actif(true).noteMoyenne(4.7).totalVentes(190)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?smartwatch",
-                        "https://source.unsplash.com/500x500/?sport,watch"
+                        "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/393047/pexels-photo-393047.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(electronique, accessTech, sport)).build();
         p9.getVariants().addAll(List.of(
@@ -262,48 +262,49 @@ public class DataInitializer implements ApplicationRunner {
 
         // ── Produits Beauté Naturelle ──────────────────────────────────────────
 
-        // Sérum vitamine C
+        // Sérum vitamine C — photo d'un sérum cosmétique
         productRepository.save(Product.builder()
                 .seller(vendeur3).nom("Sérum Vitamine C Éclat")
                 .description("Sérum concentré 15% vitamine C pure + acide hyaluronique. Texture légère à absorption rapide. Uniformise le teint, réduit les taches, protection antioxydante. 30ml.")
                 .prix(new BigDecimal("34.99")).prixPromo(new BigDecimal("27.99"))
                 .stock(60).actif(true).noteMoyenne(4.8).totalVentes(245)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?serum,skincare"
+                        "https://images.pexels.com/photos/3785147/pexels-photo-3785147.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(beaute, soinsPeau)).build());
 
-        // Crème hydratante
+        // Crème hydratante — photo d'un pot de crème
         productRepository.save(Product.builder()
                 .seller(vendeur3).nom("Crème Hydratante Peaux Sensibles")
                 .description("Crème riche formule douce sans parfum, sans paraben. Aloe vera bio + beurre de karité. Nourrit et apaise les peaux sensibles et réactives. 50ml.")
                 .prix(new BigDecimal("22.99")).stock(75).actif(true).noteMoyenne(4.6).totalVentes(168)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?face,cream"
+                        "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(beaute, soinsPeau)).build());
 
-        // Huile argan
+        // Huile argan — photo d'une huile capillaire
         productRepository.save(Product.builder()
                 .seller(vendeur3).nom("Huile Capillaire Argan Bio")
                 .description("Huile d'argan 100% pure et bio, pressée à froid. Nourrit, répare et fait briller les cheveux secs et abîmés. 2-3 gouttes suffisent. 30ml, certifiée COSMOS.")
                 .prix(new BigDecimal("19.99")).prixPromo(new BigDecimal("15.99"))
                 .stock(50).actif(true).noteMoyenne(4.7).totalVentes(132)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?argan,oil,hair"
+                        "https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(beaute)).build());
 
         // ── Produit Sport ──────────────────────────────────────────────────────
 
+        // Legging sport — photo d'un legging de sport
         Product p13 = Product.builder()
                 .seller(vendeur1).nom("Legging Sport Gainant Taille Haute")
                 .description("Legging de sport taille haute en tissu compressif 4 voies. Poche latérale zippée, coutures plates anti-irritations, séchage rapide. Idéal yoga, running, fitness.")
                 .prix(new BigDecimal("44.99")).prixPromo(new BigDecimal("34.99"))
                 .stock(55).actif(true).noteMoyenne(4.5).totalVentes(210)
                 .images(List.of(
-                        "https://source.unsplash.com/500x500/?leggings,sport",
-                        "https://source.unsplash.com/500x500/?yoga,pants"
+                        "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=500",
+                        "https://images.pexels.com/photos/4498294/pexels-photo-4498294.jpeg?auto=compress&cs=tinysrgb&w=500"
                 ))
                 .categories(Set.of(sport, sportVet, vetements)).build();
         p13.getVariants().addAll(List.of(
