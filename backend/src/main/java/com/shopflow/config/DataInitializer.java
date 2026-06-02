@@ -105,8 +105,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("24.99")).prixPromo(new BigDecimal("17.99"))
                 .stock(80).actif(true).noteMoyenne(4.6).totalVentes(340)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?white,tshirt",
+                        "https://source.unsplash.com/500x500/?cotton,shirt"
                 ))
                 .categories(Set.of(vetements, tshirts)).build();
         p1.getVariants().addAll(List.of(
@@ -125,8 +125,8 @@ public class DataInitializer implements ApplicationRunner {
                 .description("Jean slim fit en denim stretch 98% coton, 2% élasthanne. Coupe moderne près du corps, 5 poches classiques. Disponible en bleu indigo.")
                 .prix(new BigDecimal("64.99")).stock(45).actif(true).noteMoyenne(4.3).totalVentes(185)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?jeans,denim",
+                        "https://source.unsplash.com/500x500/?slim,jeans"
                 ))
                 .categories(Set.of(vetements, pantalons)).build();
         p2.getVariants().addAll(List.of(
@@ -145,8 +145,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("49.99")).prixPromo(new BigDecimal("37.99"))
                 .stock(30).actif(true).noteMoyenne(4.7).totalVentes(95)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?floral,dress",
+                        "https://source.unsplash.com/500x500/?summer,dress"
                 ))
                 .categories(Set.of(vetements, robes)).build();
         p3.getVariants().addAll(List.of(
@@ -164,8 +164,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99"))
                 .stock(25).actif(true).noteMoyenne(4.5).totalVentes(72)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1601333144130-8cbb312386b6?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?denim,jacket",
+                        "https://source.unsplash.com/500x500/?jean,jacket"
                 ))
                 .categories(Set.of(vetements, vestes)).build();
         p4.getVariants().addAll(List.of(
@@ -185,8 +185,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99"))
                 .stock(55).actif(true).noteMoyenne(4.6).totalVentes(420)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1598331668826-20cecc596b86?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?wireless,earbuds",
+                        "https://source.unsplash.com/500x500/?airpods,earphones"
                 ))
                 .categories(Set.of(electronique, audio)).build();
         p5.getVariants().addAll(List.of(
@@ -203,8 +203,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("149.99")).prixPromo(new BigDecimal("119.99"))
                 .stock(30).actif(true).noteMoyenne(4.8).totalVentes(285)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?headphones,bluetooth",
+                        "https://source.unsplash.com/500x500/?over,ear,headphones"
                 ))
                 .categories(Set.of(electronique, audio)).build();
         p6.getVariants().addAll(List.of(
@@ -219,7 +219,7 @@ public class DataInitializer implements ApplicationRunner {
                 .description("Chargeur GaN ultra-compact 65W avec 2 ports USB-C et 1 USB-A. Compatible Power Delivery 3.0, charge en 35 min un smartphone, 2h un laptop.")
                 .prix(new BigDecimal("39.99")).stock(120).actif(true).noteMoyenne(4.4).totalVentes(580)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?usb,charger"
                 ))
                 .categories(Set.of(electronique, accessTech)).build());
 
@@ -230,7 +230,7 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("29.99")).prixPromo(new BigDecimal("22.99"))
                 .stock(90).actif(true).noteMoyenne(4.2).totalVentes(315)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?phone,case"
                 ))
                 .categories(Set.of(electronique, accessTech)).build();
         p8.getVariants().addAll(List.of(
@@ -249,8 +249,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("199.99")).prixPromo(new BigDecimal("159.99"))
                 .stock(40).actif(true).noteMoyenne(4.7).totalVentes(190)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?smartwatch",
+                        "https://source.unsplash.com/500x500/?sport,watch"
                 ))
                 .categories(Set.of(electronique, accessTech, sport)).build();
         p9.getVariants().addAll(List.of(
@@ -269,7 +269,7 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("34.99")).prixPromo(new BigDecimal("27.99"))
                 .stock(60).actif(true).noteMoyenne(4.8).totalVentes(245)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?serum,skincare"
                 ))
                 .categories(Set.of(beaute, soinsPeau)).build());
 
@@ -279,7 +279,7 @@ public class DataInitializer implements ApplicationRunner {
                 .description("Crème riche formule douce sans parfum, sans paraben. Aloe vera bio + beurre de karité. Nourrit et apaise les peaux sensibles et réactives. 50ml.")
                 .prix(new BigDecimal("22.99")).stock(75).actif(true).noteMoyenne(4.6).totalVentes(168)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?face,cream"
                 ))
                 .categories(Set.of(beaute, soinsPeau)).build());
 
@@ -290,7 +290,7 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("19.99")).prixPromo(new BigDecimal("15.99"))
                 .stock(50).actif(true).noteMoyenne(4.7).totalVentes(132)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?argan,oil,hair"
                 ))
                 .categories(Set.of(beaute)).build());
 
@@ -302,8 +302,8 @@ public class DataInitializer implements ApplicationRunner {
                 .prix(new BigDecimal("44.99")).prixPromo(new BigDecimal("34.99"))
                 .stock(55).actif(true).noteMoyenne(4.5).totalVentes(210)
                 .images(List.of(
-                        "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=500&h=500&fit=crop&q=80",
-                        "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=500&h=500&fit=crop&q=80"
+                        "https://source.unsplash.com/500x500/?leggings,sport",
+                        "https://source.unsplash.com/500x500/?yoga,pants"
                 ))
                 .categories(Set.of(sport, sportVet, vetements)).build();
         p13.getVariants().addAll(List.of(
