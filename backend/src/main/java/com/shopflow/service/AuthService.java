@@ -127,7 +127,6 @@ public class AuthService {
 
         SellerProfileResponse sellerProfileResponse = null;
         if (user.getRole() == Role.SELLER) {
-            sellerProfileRepository.findByUserId(user.getId()).ifPresent(sp -> {});
             var sp = sellerProfileRepository.findByUserId(user.getId()).orElse(null);
             if (sp != null) {
                 sellerProfileResponse = SellerProfileResponse.builder()

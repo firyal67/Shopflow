@@ -78,7 +78,7 @@ export default function ProductDetailPage() {
         <div className="space-y-3">
           <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100">
             <Image
-              src={product.images[selectedImage] || "/placeholder.png"}
+              src={product.images[selectedImage] || "/placeholder.svg"}
               alt={product.nom}
               fill
               className="object-cover"

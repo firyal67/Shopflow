@@ -58,7 +58,7 @@ export default function OrderDetailPage() {
         {order.lignes.map((item) => (
           <div key={item.id} className="flex gap-3 items-center">
             <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-gray-100 shrink-0">
-              <Image src={item.productImage || "/placeholder.png"} alt={item.productNom} fill className="object-cover" />
+              <Image src={item.productImage || "/placeholder.svg"} alt={item.productNom} fill className="object-cover" />
             </div>
             <div className="flex-1">
               <p className="font-medium text-gray-900 text-sm">{item.productNom}</p>
