@@ -34,7 +34,8 @@ public class DataInitializer implements ApplicationRunner {
     @Transactional
     public void run(ApplicationArguments args) {
         if (userRepository.count() > 0) {
-            log.info("Données déjà présentes — skipping DataInitializer");
+            log.info("Données déjà présentes — mise à jour des images produits");
+            updateProductImages();
             return;
         }
 
@@ -180,5 +181,31 @@ public class DataInitializer implements ApplicationRunner {
         log.info("→ admin@shopflow.com / Password1 (ADMIN)");
         log.info("→ vendeur1@shopflow.com / Password1 (SELLER)");
         log.info("→ client1@shopflow.com / Password1 (CUSTOMER)");
+    }
+
+    @Transactional
+    protected void updateProductImages() {
+        var products = productRepository.findAll();
+
+        var updates = java.util.Map.of(
+            "T-Shirt Premium Coton Bio", List.of("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=400&fit=crop"),
+            "Jean Slim Fit", List.of("https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=400&h=400&fit=crop"),
+            "Robe Ete Fleurie", List.of("https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop"),
+            "Veste en Jean", List.of("https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop"),
+            "Ecouteurs Bluetooth Pro", List.of("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"),
+            "Chargeur Rapide USB-C 65W", List.of("https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&h=400&fit=crop"),
+            "Coque iPhone 15 Pro", List.of("https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=400&fit=crop"),
+            "Support Telephone Voiture", List.of("https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=400&h=400&fit=crop")
+        );
+
+        for (var p : products) {
+            List<String> newImages = updates.get(p.getNom());
+            if (newImages != null) {
+                p.getImages().clear();
+                p.getImages().addAll(newImages);
+                productRepository.save(p);
+            }
+        }
+        log.info("Images mises à jour pour {} produits", products.size());
     }
 }
