@@ -131,12 +131,20 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <Link
-                href="/login"
-                className="btn-primary text-sm py-2 px-4"
-              >
-                Connexion
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/register"
+                  className="btn-outline text-sm py-2 px-4"
+                >
+                  Inscription
+                </Link>
+                <Link
+                  href="/login"
+                  className="btn-primary text-sm py-2 px-4"
+                >
+                  Connexion
+                </Link>
+              </div>
             )}
 
             {/* Mobile menu button */}

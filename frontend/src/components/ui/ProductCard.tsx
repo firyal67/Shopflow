@@ -16,23 +16,25 @@ export default function ProductCard({ product, onAddToCart }: Props) {
 
   return (
     <div className="group relative bg-zinc-900/80 backdrop-blur-sm rounded-2xl border border-zinc-800/50 overflow-hidden transition-all duration-300 hover:border-zinc-700/60 hover:shadow-xl hover:shadow-amber-900/5 hover:-translate-y-1">
-      {/* Image */}
-      <Link href={`/products/${p.id}`} className="block aspect-square bg-zinc-800/50 relative overflow-hidden">
-        {p.images && p.images[0] ? (
-          <Image
-            src={p.images[0]}
-            alt={p.nom}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-zinc-600 text-sm">
-            Pas d'image
-          </div>
-        )}
+      {/* Image + quick add */}
+      <div className="relative aspect-square bg-zinc-800/50">
+        <Link href={`/products/${p.id}`} className="block w-full h-full">
+          {p.images && p.images[0] ? (
+            <Image
+              src={p.images[0]}
+              alt={p.nom}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-zinc-600 text-sm">
+              Pas d'image
+            </div>
+          )}
+        </Link>
         {/* Badges */}
-        <div className="absolute top-2 left-2 flex flex-col gap-1.5">
+        <div className="absolute top-2 left-2 flex flex-col gap-1.5 pointer-events-none">
           {p.enPromotion && (
             <span className="badge-amber text-[11px] px-2 py-0.5">
               -{p.pourcentageRemise ? Math.round(p.pourcentageRemise) : 0}%
@@ -45,16 +47,14 @@ export default function ProductCard({ product, onAddToCart }: Props) {
         {/* Quick add */}
         {onAddToCart && (
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              onAddToCart(p);
-            }}
+            type="button"
+            onClick={() => onAddToCart(p)}
             className="absolute bottom-2 right-2 w-9 h-9 rounded-xl bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-lg shadow-amber-900/40 scale-90 group-hover:scale-100"
           >
             <ShoppingCart size={16} />
           </button>
         )}
-      </Link>
+      </div>
 
       {/* Infos */}
       <div className="p-3.5 space-y-2">
