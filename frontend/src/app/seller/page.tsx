@@ -161,7 +161,7 @@ export default function SellerDashboardPage() {
                           <input
                             value={editForm.nom}
                             onChange={e => setEditForm({ ...editForm, nom: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+                            className="w-full bg-zinc-800/50 text-zinc-100 border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                           />
                         </div>
                         <div className="sm:col-span-2">
@@ -170,7 +170,7 @@ export default function SellerDashboardPage() {
                             value={editForm.description}
                             onChange={e => setEditForm({ ...editForm, description: e.target.value })}
                             rows={3}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 resize-none"
+                            className="w-full bg-zinc-800/50 text-zinc-100 border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 resize-none"
                           />
                         </div>
                         <div>
@@ -179,7 +179,7 @@ export default function SellerDashboardPage() {
                             type="number" step="0.01" min="0"
                             value={editForm.prix}
                             onChange={e => setEditForm({ ...editForm, prix: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+                            className="w-full bg-zinc-800/50 text-zinc-100 border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                           />
                         </div>
                         <div>
@@ -188,7 +188,7 @@ export default function SellerDashboardPage() {
                             type="number" step="0.01" min="0"
                             value={editForm.prixPromo}
                             onChange={e => setEditForm({ ...editForm, prixPromo: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+                            className="w-full bg-zinc-800/50 text-zinc-100 border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                             placeholder="Laisser vide si pas de promo"
                           />
                         </div>
@@ -198,7 +198,7 @@ export default function SellerDashboardPage() {
                             type="number" min="0"
                             value={editForm.stock}
                             onChange={e => setEditForm({ ...editForm, stock: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+                            className="w-full bg-zinc-800/50 text-zinc-100 border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                           />
                         </div>
                       </div>
