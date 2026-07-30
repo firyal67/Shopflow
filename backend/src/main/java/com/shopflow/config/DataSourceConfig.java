@@ -22,29 +22,38 @@ public class DataSourceConfig {
         }
 
         String databaseUrl = System.getenv("DATABASE_URL");
-        if (databaseUrl != null && (databaseUrl.startsWith("postgres://") || databaseUrl.startsWith("postgresql://"))) {
-            String rest = databaseUrl.substring(11);
-            int atIndex = rest.lastIndexOf('@');
-            if (atIndex < 0) throw new IllegalStateException("DATABASE_URL invalide : " + databaseUrl);
-
-            String userPass = rest.substring(0, atIndex);
-            String hostPortDb = rest.substring(atIndex + 1);
-            String[] userParts = userPass.split(":", 2);
-            String[] hostDbParts = hostPortDb.split("/", 2);
-            String hostPort = hostDbParts[0];
-            String dbName = hostDbParts.length > 1 ? hostDbParts[1] : "";
-            String[] hostPortParts = hostPort.split(":", 2);
-            String host = hostPortParts[0];
-            int port = hostPortParts.length > 1 ? Integer.parseInt(hostPortParts[1]) : 5432;
-
-            return buildDataSource(
-                "jdbc:postgresql://" + host + ":" + port + "/" + dbName,
-                userParts[0],
-                userParts.length > 1 ? userParts[1] : ""
-            );
+        if (databaseUrl == null || databaseUrl.isBlank()) {
+            throw new IllegalStateException("Aucune variable DATABASE_URL ou JDBC_DATABASE_URL trouvée");
+        }
+        String prefix;
+        String urlLower = databaseUrl.toLowerCase();
+        if (urlLower.startsWith("postgresql://")) {
+            prefix = "postgresql://";
+        } else if (urlLower.startsWith("postgres://")) {
+            prefix = "postgres://";
+        } else {
+            throw new IllegalStateException("Aucune variable DATABASE_URL ou JDBC_DATABASE_URL trouvée");
         }
 
-        throw new IllegalStateException("Aucune variable DATABASE_URL ou JDBC_DATABASE_URL trouvée");
+        String rest = databaseUrl.substring(prefix.length());
+        int atIndex = rest.lastIndexOf('@');
+        if (atIndex < 0) throw new IllegalStateException("DATABASE_URL invalide : " + databaseUrl);
+
+        String userPass = rest.substring(0, atIndex);
+        String hostPortDb = rest.substring(atIndex + 1);
+        String[] userParts = userPass.split(":", 2);
+        String[] hostDbParts = hostPortDb.split("/", 2);
+        String hostPort = hostDbParts[0];
+        String dbName = hostDbParts.length > 1 ? hostDbParts[1] : "";
+        String[] hostPortParts = hostPort.split(":", 2);
+        String host = hostPortParts[0];
+        int port = hostPortParts.length > 1 ? Integer.parseInt(hostPortParts[1]) : 5432;
+
+        return buildDataSource(
+            "jdbc:postgresql://" + host + ":" + port + "/" + dbName,
+            userParts[0],
+            userParts.length > 1 ? userParts[1] : ""
+        );
     }
 
     private DataSource buildDataSource(String url, String username, String password) {
