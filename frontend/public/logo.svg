@@ -1,20 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
   <defs>
-    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#fbbf24"/>
       <stop offset="50%" stop-color="#f59e0b"/>
       <stop offset="100%" stop-color="#d97706"/>
     </linearGradient>
-    <linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#b45309"/>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.25)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="44" height="44" rx="14" fill="#09090b" stroke="url(#lg)" stroke-width="2"/>
-  <path d="M12 20L24 12L36 20L30 28L24 36L18 28L12 20Z" fill="url(#lg)" opacity="0.9"/>
-  <path d="M24 14L24 34" stroke="#09090b" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M12 20L36 20" stroke="#09090b" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M18 28L30 28" stroke="#09090b" stroke-width="1.5" stroke-linecap="round"/>
-  <text x="58" y="32" font-family="Inter,-apple-system,sans-serif" font-weight="700" font-size="30" letter-spacing="0" fill="#f4f4f5">Shop</text>
-  <text x="132" y="32" font-family="Inter,-apple-system,sans-serif" font-weight="300" font-size="30" letter-spacing="1" fill="url(#lg)">Flow</text>
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="url(#bg)"/>
+  <path d="M160 340L140 280L256 220L372 280L352 340" stroke="#09090b" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M140 280V380L256 440L372 380V280" stroke="#09090b" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M200 320C200 350 225 375 256 375C287 375 312 350 312 320" stroke="#09090b" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="url(#shine)"/>
 </svg>

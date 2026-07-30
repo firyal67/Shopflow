@@ -25,8 +25,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-16 flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="shrink-0 group">
-            <img src="/logo.svg" alt="ShopFlow" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
+          <Link href="/" className="flex items-center gap-2 shrink-0 group">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-amber-900/40 group-hover:shadow-amber-900/60 group-hover:scale-105 transition-all duration-300">
+              S
+            </div>
+            <span className="font-bold text-xl tracking-tight text-zinc-100 group-hover:text-amber-400 transition-colors duration-300">ShopFlow</span>
           </Link>
 
           {/* Desktop links */}
