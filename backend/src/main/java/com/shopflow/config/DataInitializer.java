@@ -88,49 +88,49 @@ public class DataInitializer implements ApplicationRunner {
         // ── PRODUITS ──────────────────────────────────────────────────
         Product p1 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("T-Shirt Premium Coton Bio").description("T-shirt en coton bio, coupe moderne, disponible en plusieurs tailles")
-                .prix(new BigDecimal("29.99")).prixPromo(new BigDecimal("19.99")).stock(50)
+                .prix(new BigDecimal("59.99")).prixPromo(new BigDecimal("39.99")).stock(50)
                 .images(List.of("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements, tshirts)).noteMoyenne(4.5).totalVentes(120).build());
 
         Product p2 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("Jean Slim Fit").description("Jean slim fit stretch, confortable et elegant")
-                .prix(new BigDecimal("59.99")).stock(30)
+                .prix(new BigDecimal("129.99")).stock(30)
                 .images(List.of("https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements, pantalons)).noteMoyenne(4.2).totalVentes(85).build());
 
         Product p3 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("Robe Ete Fleurie").description("Robe legere parfaite pour l'ete, motif floral")
-                .prix(new BigDecimal("45.00")).prixPromo(new BigDecimal("35.00")).stock(25)
+                .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99")).stock(25)
                 .images(List.of("https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements)).noteMoyenne(4.7).totalVentes(60).build());
 
         Product p4 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("Veste en Jean").description("Veste en jean classique, coupe droite")
-                .prix(new BigDecimal("79.99")).stock(20)
+                .prix(new BigDecimal("169.99")).stock(20)
                 .images(List.of("https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements)).noteMoyenne(4.0).totalVentes(45).build());
 
         Product p5 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Ecouteurs Bluetooth Pro").description("Ecouteurs sans fil avec reduction de bruit active, 30h d'autonomie")
-                .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99")).stock(40)
+                .prix(new BigDecimal("199.99")).prixPromo(new BigDecimal("149.99")).stock(40)
                 .images(List.of("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(4.6).totalVentes(200).build());
 
         Product p6 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Chargeur Rapide USB-C 65W").description("Chargeur rapide compatible avec tous les appareils USB-C")
-                .prix(new BigDecimal("24.99")).stock(100)
+                .prix(new BigDecimal("49.99")).stock(100)
                 .images(List.of("https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(4.3).totalVentes(350).build());
 
         Product p7 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Coque iPhone 15 Pro").description("Coque de protection premium en silicone liquide")
-                .prix(new BigDecimal("19.99")).prixPromo(new BigDecimal("14.99")).stock(80)
+                .prix(new BigDecimal("39.99")).prixPromo(new BigDecimal("29.99")).stock(80)
                 .images(List.of("https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(4.1).totalVentes(180).build());
 
         Product p8 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Support Telephone Voiture").description("Support magnetique universel pour tableau de bord")
-                .prix(new BigDecimal("15.99")).stock(60)
+                .prix(new BigDecimal("34.99")).stock(60)
                 .images(List.of("https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(3.9).totalVentes(95).build());
 
@@ -187,7 +187,7 @@ public class DataInitializer implements ApplicationRunner {
     protected void updateProductImages() {
         var products = productRepository.findAll();
 
-        var updates = java.util.Map.of(
+        var imageUpdates = java.util.Map.of(
             "T-Shirt Premium Coton Bio", List.of("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=400&fit=crop"),
             "Jean Slim Fit", List.of("https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=400&h=400&fit=crop"),
             "Robe Ete Fleurie", List.of("https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop"),
@@ -198,14 +198,32 @@ public class DataInitializer implements ApplicationRunner {
             "Support Telephone Voiture", List.of("https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=400&h=400&fit=crop")
         );
 
+        var priceUpdates = java.util.Map.of(
+            "T-Shirt Premium Coton Bio", new BigDecimal[]{new BigDecimal("59.99"), new BigDecimal("39.99")},
+            "Jean Slim Fit", new BigDecimal[]{new BigDecimal("129.99"), null},
+            "Robe Ete Fleurie", new BigDecimal[]{new BigDecimal("89.99"), new BigDecimal("69.99")},
+            "Veste en Jean", new BigDecimal[]{new BigDecimal("169.99"), null},
+            "Ecouteurs Bluetooth Pro", new BigDecimal[]{new BigDecimal("199.99"), new BigDecimal("149.99")},
+            "Chargeur Rapide USB-C 65W", new BigDecimal[]{new BigDecimal("49.99"), null},
+            "Coque iPhone 15 Pro", new BigDecimal[]{new BigDecimal("39.99"), new BigDecimal("29.99")},
+            "Support Telephone Voiture", new BigDecimal[]{new BigDecimal("34.99"), null}
+        );
+
         for (var p : products) {
-            List<String> newImages = updates.get(p.getNom());
+            List<String> newImages = imageUpdates.get(p.getNom());
+            BigDecimal[] newPrices = priceUpdates.get(p.getNom());
             if (newImages != null) {
                 p.getImages().clear();
                 p.getImages().addAll(newImages);
+            }
+            if (newPrices != null) {
+                p.setPrix(newPrices[0]);
+                p.setPrixPromo(newPrices[1]);
+            }
+            if (newImages != null || newPrices != null) {
                 productRepository.save(p);
             }
         }
-        log.info("Images mises à jour pour {} produits", products.size());
+        log.info("Images et prix mis à jour pour {} produits", products.size());
     }
 }

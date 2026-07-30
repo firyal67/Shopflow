@@ -40,7 +40,7 @@ export default function LoginPage() {
   return (
     <div className="max-w-md mx-auto mt-8">
       <div className="card">
-        <h1 className="text-2xl font-bold text-zinc-100 mb-6">Connexion</h1>
+        <h1 className="section-title mb-6">Connexion</h1>
 
         {error && (
           <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
@@ -58,7 +58,7 @@ export default function LoginPage() {
           <div>
             <div className="flex items-center justify-between mb-1">
               <label className="label">Mot de passe</label>
-              <Link href="/reset-password" className="text-xs text-blue-400 hover:text-blue-300">
+              <Link href="/reset-password" className="text-xs text-amber-400 hover:text-amber-300">
                 Mot de passe oublié ?
               </Link>
             </div>
@@ -73,7 +73,7 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-zinc-500 mt-4">
           Pas encore de compte ?{" "}
-          <Link href="/register" className="text-blue-400 hover:text-blue-300 font-medium">
+          <Link href="/register" className="text-amber-400 hover:text-amber-300 font-medium">
             S'inscrire
           </Link>
         </p>

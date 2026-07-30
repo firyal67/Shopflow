@@ -124,7 +124,7 @@ function ProductsContent() {
             <SlidersHorizontal size={16} /> Filtres
           </h3>
           {hasActiveFilters && (
-            <button onClick={clearFilters} className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
+            <button onClick={clearFilters} className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1">
               <X size={12} /> Effacer
             </button>
           )}
@@ -137,7 +137,7 @@ function ProductsContent() {
             <button
               onClick={() => handleCategoryClick()}
               className={`w-full text-left text-sm px-2 py-1.5 rounded-lg transition-colors ${
-                !categoryId ? "bg-blue-600/20 text-blue-400 font-medium" : "text-zinc-400 hover:bg-zinc-800"
+                !categoryId ? "bg-amber-500/10 text-amber-400 font-medium" : "text-zinc-400 hover:bg-zinc-800"
               }`}
             >
               Toutes les catégories
@@ -148,7 +148,7 @@ function ProductsContent() {
                 onClick={() => handleCategoryClick(cat.id)}
                 className={`w-full text-left text-sm px-2 py-1.5 rounded-lg transition-colors ${
                   categoryId === String(cat.id)
-                    ? "bg-blue-600/20 text-blue-400 font-medium"
+                    ? "bg-amber-500/10 text-amber-400 font-medium"
                     : "text-zinc-400 hover:bg-zinc-800"
                 }`}
               >
@@ -167,14 +167,14 @@ function ProductsContent() {
               placeholder="Min"
               value={prixMin}
               onChange={(e) => { setPrixMin(e.target.value); setPage(0); }}
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
             />
             <input
               type="number"
               placeholder="Max"
               value={prixMax}
               onChange={(e) => { setPrixMax(e.target.value); setPage(0); }}
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
             />
           </div>
         </div>
@@ -185,7 +185,7 @@ function ProductsContent() {
             type="checkbox"
             checked={promo === "true"}
             onChange={(e) => handlePromoToggle(e.target.checked)}
-            className="rounded text-blue-500 bg-zinc-800 border-zinc-600 focus:ring-blue-500"
+            className="rounded text-amber-500 bg-zinc-800 border-zinc-600 focus:ring-amber-500/50"
           />
           <span className="text-sm text-zinc-300">🔥 En promotion</span>
         </label>
@@ -201,7 +201,7 @@ function ProductsContent() {
               name="q"
               defaultValue={q}
               placeholder="Rechercher un produit..."
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg pl-9 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg pl-9 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
             />
           </div>
           <button type="submit" className="btn-primary px-5">Rechercher</button>
@@ -217,7 +217,7 @@ function ProductsContent() {
             <select
               value={sort}
               onChange={(e) => { setSort(e.target.value); setPage(0); }}
-              className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 text-sm text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 text-sm text-zinc-100 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
             >
               {SORT_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -230,13 +230,13 @@ function ProductsContent() {
         {hasActiveFilters && (
           <div className="flex flex-wrap gap-2 mb-4">
             {q && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600/20 text-blue-400 text-xs rounded-full">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-400 text-xs rounded-full">
                 Recherche : "{q}"
                 <button onClick={() => router.push("/products")}><X size={12} /></button>
               </span>
             )}
             {categoryId && categories && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600/20 text-blue-400 text-xs rounded-full">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-400 text-xs rounded-full">
                 {categories.find((c) => String(c.id) === categoryId)?.nom}
                 <button onClick={() => handleCategoryClick()}><X size={12} /></button>
               </span>
@@ -248,7 +248,7 @@ function ProductsContent() {
               </span>
             )}
             {(prixMin || prixMax) && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600/20 text-blue-400 text-xs rounded-full">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-400 text-xs rounded-full">
                 Prix : {prixMin || "0"} – {prixMax || "∞"} €
                 <button onClick={() => { setPrixMin(""); setPrixMax(""); }}><X size={12} /></button>
               </span>
@@ -289,7 +289,7 @@ function ProductsContent() {
                 <button
                   onClick={() => setPage((p) => Math.max(0, p - 1))}
                   disabled={page === 0}
-                  className="px-3 py-2 rounded-lg text-sm border border-zinc-700 text-zinc-300 disabled:opacity-40 hover:border-blue-500 transition-colors"
+                  className="px-3 py-2 rounded-lg text-sm border border-zinc-700 text-zinc-300 disabled:opacity-40 hover:border-amber-500/50 transition-colors"
                 >
                   ←
                 </button>
@@ -299,8 +299,8 @@ function ProductsContent() {
                     onClick={() => setPage(i)}
                     className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
                       page === i
-                        ? "bg-blue-600 text-white"
-                        : "bg-zinc-900 border border-zinc-700 text-zinc-300 hover:border-blue-500"
+                        ? "bg-amber-500 text-white"
+                        : "bg-zinc-900 border border-zinc-700 text-zinc-300 hover:border-amber-500/50"
                     }`}
                   >
                     {i + 1}
@@ -309,7 +309,7 @@ function ProductsContent() {
                 <button
                   onClick={() => setPage((p) => Math.min(data.totalPages - 1, p + 1))}
                   disabled={page === data.totalPages - 1}
-                  className="px-3 py-2 rounded-lg text-sm border border-zinc-700 text-zinc-300 disabled:opacity-40 hover:border-blue-500 transition-colors"
+                  className="px-3 py-2 rounded-lg text-sm border border-zinc-700 text-zinc-300 disabled:opacity-40 hover:border-amber-500/50 transition-colors"
                 >
                   →
                 </button>

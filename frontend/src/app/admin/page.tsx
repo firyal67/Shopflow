@@ -52,7 +52,7 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-zinc-100">Administration</h1>
+      <h1 className="section-title">Administration</h1>
 
       <div className="flex gap-1 bg-zinc-800 p-1 rounded-lg w-fit flex-wrap">
         {tabs.map((tab) => (
@@ -71,7 +71,7 @@ export default function AdminDashboardPage() {
         <div className="space-y-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="card text-center">
-              <TrendingUp size={24} className="text-blue-400 mx-auto mb-2" />
+              <TrendingUp size={24} className="text-amber-400 mx-auto mb-2" />
               <p className="text-2xl font-bold text-zinc-100">{dashboard.chiffreAffairesGlobal?.toFixed(2)} €</p>
               <p className="text-xs text-zinc-500">Chiffre d'affaires</p>
             </div>
@@ -81,7 +81,7 @@ export default function AdminDashboardPage() {
               <p className="text-xs text-zinc-500">Commandes</p>
             </div>
             <div className="card text-center">
-              <Users size={24} className="text-blue-500 mx-auto mb-2" />
+              <Users size={24} className="text-amber-500 mx-auto mb-2" />
               <p className="text-2xl font-bold text-zinc-100">{dashboard.totalUtilisateurs}</p>
               <p className="text-xs text-zinc-500">Utilisateurs</p>
             </div>
@@ -93,7 +93,7 @@ export default function AdminDashboardPage() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-zinc-100 mb-3">Commandes récentes</h3>
+            <h3 className="section-title text-lg mb-3">Commandes récentes</h3>
             <div className="space-y-2">
               {dashboard.commandesRecentes?.map((order: any) => (
                 <div key={order.id} className="card flex items-center justify-between py-2">
@@ -124,7 +124,7 @@ export default function AdminDashboardPage() {
                 </span>
                 <button
                   onClick={() => toggleUserMutation.mutate(user.id)}
-                  className="text-zinc-500 hover:text-blue-400 transition-colors"
+                  className="text-zinc-500 hover:text-amber-400 transition-colors"
                   title={user.actif ? "Désactiver" : "Activer"}
                 >
                   {user.actif ? <XCircle size={18} /> : <CheckCircle size={18} />}
@@ -153,7 +153,7 @@ export default function AdminDashboardPage() {
       {/* Avis à modérer */}
       {activeTab === "reviews" && (
         <div className="space-y-3">
-          <h2 className="font-semibold text-zinc-100">Avis en attente de modération</h2>
+          <h2 className="section-title text-xl">Avis en attente de modération</h2>
           {pendingReviews?.length === 0 && <p className="text-zinc-500 text-sm">Aucun avis en attente</p>}
           {pendingReviews?.map((review: any) => (
             <div key={review.id} className="card space-y-2">

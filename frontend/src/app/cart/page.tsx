@@ -97,7 +97,7 @@ export default function CartPage() {
       <div className="text-center py-16">
         <ShoppingCart size={64} className="text-zinc-700 mx-auto mb-4" />
         <p className="text-xl text-zinc-400 mb-4">Votre panier est vide</p>
-        <Link href="/products" className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 inline-block">
+        <Link href="/products" className="btn-primary inline-block">
           Continuer mes achats
         </Link>
       </div>
@@ -108,7 +108,7 @@ export default function CartPage() {
     <div className="grid lg:grid-cols-3 gap-8">
       {/* Articles */}
       <div className="lg:col-span-2 space-y-4">
-        <h1 className="text-2xl font-bold text-zinc-100">
+        <h1 className="section-title">
           Mon panier ({lignes.length} article{lignes.length > 1 ? "s" : ""})
         </h1>
 
@@ -129,7 +129,7 @@ export default function CartPage() {
               {item.variantAttribut && (
                 <p className="text-sm text-zinc-500">{item.variantAttribut}: {item.variantValeur}</p>
               )}
-              <p className="text-blue-400 font-semibold">{Number(item.prixUnitaire).toFixed(2)} €</p>
+              <p className="text-amber-400 font-semibold">{Number(item.prixUnitaire).toFixed(2)} €</p>
             </div>
 
             <div className="flex flex-col items-end gap-2">
@@ -145,7 +145,7 @@ export default function CartPage() {
                 <button
                   onClick={() => updateItem(item.id, item.quantite - 1)}
                   disabled={updating}
-                  className="w-7 h-7 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-300 hover:border-blue-500"
+                  className="w-7 h-7 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-300 hover:border-amber-500/50"
                 >
                   <Minus size={12} />
                 </button>
@@ -153,7 +153,7 @@ export default function CartPage() {
                 <button
                   onClick={() => updateItem(item.id, item.quantite + 1)}
                   disabled={updating || item.quantite >= item.stockDisponible}
-                  className="w-7 h-7 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-300 hover:border-blue-500 disabled:opacity-40"
+                  className="w-7 h-7 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-300 hover:border-amber-500/50 disabled:opacity-40"
                 >
                   <Plus size={12} />
                 </button>
@@ -224,12 +224,12 @@ export default function CartPage() {
 
           <button
             onClick={() => router.push("/checkout")}
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+            className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg transition-colors"
           >
             Commander
           </button>
 
-          <Link href="/products" className="block text-center text-sm text-zinc-500 hover:text-blue-400">
+          <Link href="/products" className="block text-center text-sm text-zinc-500 hover:text-amber-400">
             Continuer mes achats
           </Link>
         </div>

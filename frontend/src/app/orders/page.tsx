@@ -21,7 +21,7 @@ export default function OrdersPage() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-4">
-      <h1 className="text-2xl font-bold text-zinc-100">Mes commandes</h1>
+      <h1 className="section-title">Mes commandes</h1>
 
       {orders.length === 0 ? (
         <div className="text-center py-16">
@@ -33,7 +33,7 @@ export default function OrdersPage() {
         </div>
       ) : (
         orders.map((order) => (
-          <div key={order.id} className="card hover:shadow-md transition-shadow">
+          <div key={order.id} className="card-hover">
             <div className="flex items-start justify-between mb-3">
               <div>
                 <p className="font-mono font-bold text-zinc-100">{order.numeroCommande}</p>
@@ -45,7 +45,7 @@ export default function OrdersPage() {
               </div>
               <div className="flex items-center gap-3">
                 {order.isNew && (
-                  <span className="w-2 h-2 bg-primary-500 rounded-full" title="Nouveau statut" />
+                  <span className="w-2 h-2 bg-amber-500 rounded-full" title="Nouveau statut" />
                 )}
                 <OrderStatusBadge status={order.statut} />
               </div>
@@ -64,7 +64,7 @@ export default function OrdersPage() {
               <p className="font-bold text-zinc-100">{order.totalTTC.toFixed(2)} €</p>
               <Link
                 href={`/orders/${order.id}`}
-                className="text-sm text-blue-400 hover:underline"
+                className="text-sm text-amber-400 hover:underline"
               >
                 Voir le détail →
               </Link>

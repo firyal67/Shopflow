@@ -44,7 +44,7 @@ export default function OrderDetailPage() {
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-zinc-100 font-mono">{order.numeroCommande}</h1>
+          <h1 className="section-title font-mono">{order.numeroCommande}</h1>
           <p className="text-sm text-zinc-500">
             {new Date(order.dateCommande).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
           </p>
@@ -72,7 +72,7 @@ export default function OrderDetailPage() {
             {canReview && (
               <button
                 onClick={() => setReviewProductId(item.productId)}
-                className="text-xs text-blue-400 hover:underline"
+                className="text-xs text-amber-400 hover:underline"
               >
                 Laisser un avis
               </button>
@@ -90,7 +90,7 @@ export default function OrderDetailPage() {
               <button
                 key={n}
                 onClick={() => setReviewNote(n)}
-                className={`w-9 h-9 rounded-full border-2 font-bold text-sm transition-colors ${reviewNote >= n ? "border-yellow-500 bg-yellow-500/10 text-yellow-400" : "border-zinc-700 text-zinc-500"}`}
+                className={`w-9 h-9 rounded-full border-2 font-bold text-sm transition-colors ${reviewNote >= n ? "border-amber-500 bg-amber-500/10 text-amber-400" : "border-zinc-700 text-zinc-500"}`}
               >
                 {n}
               </button>

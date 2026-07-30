@@ -50,7 +50,7 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold text-zinc-100">Mon profil</h1>
+      <h1 className="section-title">Mon profil</h1>
 
       {/* Infos personnelles */}
       <div className="card space-y-3">
@@ -79,7 +79,7 @@ export default function ProfilePage() {
       <div className="card space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold text-zinc-100">Commandes en cours</h2>
-          <Link href="/orders" className="text-sm text-blue-400 hover:underline">Voir tout</Link>
+          <Link href="/orders" className="text-sm text-amber-400 hover:underline">Voir tout</Link>
         </div>
         {myOrders?.length === 0 && <p className="text-sm text-zinc-500">Aucune commande</p>}
         {myOrders?.map((order: any) => (
@@ -89,12 +89,12 @@ export default function ProfilePage() {
               <p className="text-zinc-500">{order.totalTTC.toFixed(2)} €</p>
             </div>
             <div className="flex items-center gap-3">
-              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                order.statut === "DELIVERED" ? "bg-green-500/10 text-green-400" :
-                order.statut === "CANCELLED" ? "bg-red-500/10 text-red-400" :
-                "bg-yellow-500/10 text-yellow-400"
+              <span className={`${
+                order.statut === "DELIVERED" ? "badge-green" :
+                order.statut === "CANCELLED" ? "badge-red" :
+                "badge-amber"
               }`}>{order.statut}</span>
-              <Link href={`/orders/${order.id}`} className="text-blue-400 hover:underline">Détail</Link>
+              <Link href={`/orders/${order.id}`} className="text-amber-400 hover:underline">Détail</Link>
             </div>
           </div>
         ))}
@@ -108,7 +108,7 @@ export default function ProfilePage() {
           </h2>
           <button
             onClick={() => setShowAddAddress(!showAddAddress)}
-            className="flex items-center gap-1 text-sm text-blue-400 hover:underline"
+            className="flex items-center gap-1 text-sm text-amber-400 hover:underline"
           >
             <Plus size={14} /> Ajouter
           </button>
@@ -120,7 +120,7 @@ export default function ProfilePage() {
             <div>
               <p className="font-medium text-zinc-100 text-sm">{addr.rue}</p>
               <p className="text-sm text-zinc-500">{addr.codePostal} {addr.ville}, {addr.pays}</p>
-              {addr.principal && <span className="text-xs text-blue-400 font-medium">Principale</span>}
+              {addr.principal && <span className="text-xs text-amber-400 font-medium">Principale</span>}
             </div>
             <button
               onClick={() => deleteMutation.mutate(addr.id)}
@@ -154,7 +154,7 @@ export default function ProfilePage() {
       {/* Mes avis */}
       <div className="card space-y-3">
         <h2 className="font-semibold text-zinc-100 flex items-center gap-2">
-          <Star size={16} className="text-yellow-400" /> Mes derniers avis
+          <Star size={16} className="text-amber-400" /> Mes derniers avis
         </h2>
         {myReviews.length === 0 ? (
           <p className="text-sm text-zinc-500">Vous n'avez pas encore laissé d'avis.</p>
@@ -162,7 +162,7 @@ export default function ProfilePage() {
           myReviews.map((review: any) => (
             <div key={review.id} className="border border-zinc-800 rounded-lg p-3 space-y-1">
               <div className="flex items-center justify-between">
-                <Link href={`/products/${review.productId}`} className="font-medium text-zinc-100 text-sm hover:text-blue-400">
+                <Link href={`/products/${review.productId}`} className="font-medium text-zinc-100 text-sm hover:text-amber-400">
                   Produit #{review.productId}
                 </Link>
                 <RatingStars rating={review.note} size={14} />
@@ -170,7 +170,7 @@ export default function ProfilePage() {
               {review.commentaire && <p className="text-sm text-zinc-400">{review.commentaire}</p>}
               <p className="text-xs text-zinc-500">
                 {new Date(review.dateCreation).toLocaleDateString("fr-FR")}
-                {!review.approuve && <span className="ml-2 text-yellow-400">En attente de modération</span>}
+                {!review.approuve && <span className="ml-2 badge-amber">En attente de modération</span>}
               </p>
             </div>
           ))

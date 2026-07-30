@@ -64,20 +64,20 @@ export default function ResetPasswordPage() {
         {step === "request" && (
           <>
             <div className="flex items-center gap-3 mb-6">
-              <Mail size={24} className="text-primary-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Mot de passe oublié</h1>
+              <Mail size={24} className="text-amber-400" />
+              <h1 className="text-2xl font-bold text-zinc-100">Mot de passe oublié</h1>
             </div>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="section-subtitle mb-4">
               Entrez votre email pour recevoir un lien de réinitialisation.
             </p>
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
+              <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
                 {error}
               </div>
             )}
             <form onSubmit={requestForm.handleSubmit(onRequest)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-zinc-300 mb-1">Email</label>
                 <input
                   {...requestForm.register("email")}
                   type="email"
@@ -85,7 +85,7 @@ export default function ResetPasswordPage() {
                   placeholder="vous@exemple.com"
                 />
                 {requestForm.formState.errors.email && (
-                  <p className="text-red-500 text-xs mt-1">{requestForm.formState.errors.email.message}</p>
+                  <p className="text-red-400 text-xs mt-1">{requestForm.formState.errors.email.message}</p>
                 )}
               </div>
               <button
@@ -102,34 +102,34 @@ export default function ResetPasswordPage() {
         {step === "reset" && (
           <>
             <div className="flex items-center gap-3 mb-6">
-              <KeyRound size={24} className="text-primary-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Nouveau mot de passe</h1>
+              <KeyRound size={24} className="text-amber-400" />
+              <h1 className="text-2xl font-bold text-zinc-100">Nouveau mot de passe</h1>
             </div>
             {token && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-                <p className="text-xs text-blue-700 font-medium">Token (mode démo) :</p>
-                <p className="text-xs text-blue-600 font-mono break-all">{token}</p>
+              <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 mb-4">
+                <p className="text-xs text-amber-400 font-medium">Token (mode démo) :</p>
+                <p className="text-xs text-amber-400 font-mono break-all">{token}</p>
               </div>
             )}
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
+              <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
                 {error}
               </div>
             )}
             <form onSubmit={resetForm.handleSubmit(onReset)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Token</label>
+                <label className="block text-sm font-medium text-zinc-300 mb-1">Token</label>
                 <input
                   {...resetForm.register("token")}
                   className="input-field font-mono text-sm"
                   placeholder="Token reçu par email"
                 />
                 {resetForm.formState.errors.token && (
-                  <p className="text-red-500 text-xs mt-1">{resetForm.formState.errors.token.message}</p>
+                  <p className="text-red-400 text-xs mt-1">{resetForm.formState.errors.token.message}</p>
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Nouveau mot de passe</label>
+                <label className="block text-sm font-medium text-zinc-300 mb-1">Nouveau mot de passe</label>
                 <input
                   {...resetForm.register("newPassword")}
                   type="password"
@@ -137,7 +137,7 @@ export default function ResetPasswordPage() {
                   placeholder="••••••••"
                 />
                 {resetForm.formState.errors.newPassword && (
-                  <p className="text-red-500 text-xs mt-1">{resetForm.formState.errors.newPassword.message}</p>
+                  <p className="text-red-400 text-xs mt-1">{resetForm.formState.errors.newPassword.message}</p>
                 )}
               </div>
               <button
@@ -154,15 +154,15 @@ export default function ResetPasswordPage() {
         {step === "done" && (
           <div className="text-center py-4">
             <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Mot de passe modifié !</h2>
-            <p className="text-gray-600 mb-6 text-sm">Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.</p>
+            <h2 className="text-xl font-bold text-zinc-100 mb-2">Mot de passe modifié !</h2>
+            <p className="text-zinc-400 mb-6 text-sm">Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.</p>
             <Link href="/login" className="btn-primary">Se connecter</Link>
           </div>
         )}
 
         {step !== "done" && (
-          <p className="text-center text-sm text-gray-600 mt-4">
-            <Link href="/login" className="text-primary-600 hover:underline">Retour à la connexion</Link>
+          <p className="text-center text-sm text-zinc-400 mt-4">
+            <Link href="/login" className="text-amber-400 hover:underline">Retour à la connexion</Link>
           </p>
         )}
       </div>

@@ -48,7 +48,7 @@ export default function CheckoutPage() {
         <CheckCircle size={64} className="text-green-400 mx-auto mb-4" />
         <h1 className="text-2xl font-bold text-zinc-100 mb-2">Commande confirmée !</h1>
         <p className="text-zinc-400 mb-2">Numéro de commande :</p>
-        <p className="text-xl font-mono font-bold text-blue-400 mb-6">{orderSuccess}</p>
+        <p className="text-xl font-mono font-bold text-amber-400 mb-6">{orderSuccess}</p>
         <button onClick={() => router.push("/orders")} className="btn-primary">
           Voir mes commandes
         </button>
@@ -58,7 +58,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold text-zinc-100">Finaliser la commande</h1>
+      <h1 className="section-title">Finaliser la commande</h1>
 
       {/* Adresses */}
       <div className="card space-y-4">
@@ -74,10 +74,10 @@ export default function CheckoutPage() {
               onChange={() => setSelectedAddress(addr.id)}
               className="mt-1"
             />
-            <div className={`flex-1 border rounded-lg p-3 transition-colors ${selectedAddress === addr.id ? "border-blue-500 bg-blue-600/20" : "border-zinc-700"}`}>
+            <div className={`flex-1 border rounded-lg p-3 transition-colors ${selectedAddress === addr.id ? "border-amber-500/50 bg-amber-500/10" : "border-zinc-700"}`}>
               <p className="font-medium text-zinc-100">{addr.rue}</p>
               <p className="text-sm text-zinc-400">{addr.codePostal} {addr.ville}, {addr.pays}</p>
-              {addr.principal && <span className="text-xs text-blue-400 font-medium">Adresse principale</span>}
+              {addr.principal && <span className="text-xs text-amber-400 font-medium">Adresse principale</span>}
             </div>
           </label>
         ))}
@@ -122,7 +122,7 @@ export default function CheckoutPage() {
         ) : (
           <button
             onClick={() => setShowAddAddress(true)}
-            className="flex items-center gap-2 text-sm text-blue-400 hover:underline"
+            className="flex items-center gap-2 text-sm text-amber-400 hover:underline"
           >
             <Plus size={14} /> Ajouter une adresse
           </button>

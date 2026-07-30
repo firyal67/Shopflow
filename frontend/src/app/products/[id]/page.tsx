@@ -95,7 +95,7 @@ export default function ProductDetailPage() {
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 ${selectedImage === i ? "border-blue-500" : "border-zinc-700"}`}
+                  className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 ${selectedImage === i ? "border-amber-500/50" : "border-zinc-700"}`}
                 >
                   <Image src={img} alt="" fill className="object-cover" />
                 </button>
@@ -134,8 +134,8 @@ export default function ProductDetailPage() {
                     onClick={() => setSelectedVariant(v.id === selectedVariant ? null : v.id)}
                     className={`px-3 py-1.5 border rounded-lg text-sm font-medium transition-colors ${
                       selectedVariant === v.id
-                        ? "border-blue-500 bg-blue-600/20 text-blue-400"
-                        : "border-zinc-700 text-zinc-300 hover:border-blue-500"
+                        ? "border-amber-500/50 bg-amber-500/10 text-amber-400"
+                        : "border-zinc-700 text-zinc-300 hover:border-amber-500/50"
                     }`}
                   >
                     {v.valeur}
@@ -174,7 +174,7 @@ export default function ProductDetailPage() {
       </div>
 
       <section>
-        <h2 className="text-xl font-bold text-zinc-100 mb-4">
+        <h2 className="section-title mb-4">
           Avis clients ({reviews?.totalElements ?? 0})
         </h2>
         {reviews?.content.length === 0 ? (

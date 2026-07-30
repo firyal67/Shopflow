@@ -55,7 +55,7 @@ export default function RegisterPage() {
   return (
     <div className="max-w-md mx-auto mt-8">
       <div className="card">
-        <h1 className="text-2xl font-bold text-zinc-100 mb-6">Créer un compte</h1>
+        <h1 className="section-title mb-6">Créer un compte</h1>
 
         {error && (
           <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
@@ -71,7 +71,7 @@ export default function RegisterPage() {
               {(["CUSTOMER", "SELLER"] as const).map((r) => (
                 <label key={r} className="flex-1 cursor-pointer">
                   <input {...register("role")} type="radio" value={r} className="sr-only" />
-                  <div className={`border-2 rounded-lg p-3 text-center text-sm font-medium transition-colors ${role === r ? "border-blue-500 bg-blue-600/20 text-blue-400" : "border-zinc-700 text-zinc-500"}`}>
+                  <div className={`border-2 rounded-lg p-3 text-center text-sm font-medium transition-colors ${role === r ? "border-amber-500/50 bg-amber-500/10 text-amber-400" : "border-zinc-700 text-zinc-500"}`}>
                     {r === "CUSTOMER" ? "Client" : "Vendeur"}
                   </div>
                 </label>
@@ -127,7 +127,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-zinc-500 mt-4">
           Déjà un compte ?{" "}
-          <Link href="/login" className="text-blue-400 hover:underline font-medium">
+          <Link href="/login" className="text-amber-400 hover:underline font-medium">
             Se connecter
           </Link>
         </p>

@@ -104,8 +104,8 @@ export default function SellerDashboardPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-zinc-100">Espace Vendeur</h1>
-        <Link href="/seller/products/new" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-xl hover:bg-blue-700 transition-colors">
+        <h1 className="section-title">Espace Vendeur</h1>
+        <Link href="/seller/products/new" className="btn-primary flex items-center gap-2 text-sm">
           <Plus size={16} /> Nouveau produit
         </Link>
       </div>
@@ -122,7 +122,7 @@ export default function SellerDashboardPage() {
           >
             {tab.label}
             {"count" in tab && tab.count !== undefined && (
-              <span className="bg-blue-500/10 text-blue-400 text-xs font-bold px-1.5 py-0.5 rounded-full">{tab.count}</span>
+              <span className="badge-amber text-xs">{tab.count}</span>
             )}
           </button>
         ))}
@@ -135,7 +135,7 @@ export default function SellerDashboardPage() {
             <div className="text-center py-16 text-zinc-500">
               <Package size={48} className="mx-auto mb-3 opacity-30" />
               <p className="font-medium">Aucun produit</p>
-              <Link href="/seller/products/new" className="mt-3 inline-block text-sm text-blue-400 hover:underline">
+              <Link href="/seller/products/new" className="mt-3 inline-block text-sm text-amber-400 hover:underline">
                 Créer votre premier produit →
               </Link>
             </div>
@@ -161,7 +161,7 @@ export default function SellerDashboardPage() {
                           <input
                             value={editForm.nom}
                             onChange={e => setEditForm({ ...editForm, nom: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                           />
                         </div>
                         <div className="sm:col-span-2">
@@ -170,7 +170,7 @@ export default function SellerDashboardPage() {
                             value={editForm.description}
                             onChange={e => setEditForm({ ...editForm, description: e.target.value })}
                             rows={3}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 resize-none"
                           />
                         </div>
                         <div>
@@ -179,7 +179,7 @@ export default function SellerDashboardPage() {
                             type="number" step="0.01" min="0"
                             value={editForm.prix}
                             onChange={e => setEditForm({ ...editForm, prix: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                           />
                         </div>
                         <div>
@@ -188,7 +188,7 @@ export default function SellerDashboardPage() {
                             type="number" step="0.01" min="0"
                             value={editForm.prixPromo}
                             onChange={e => setEditForm({ ...editForm, prixPromo: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                             placeholder="Laisser vide si pas de promo"
                           />
                         </div>
@@ -198,7 +198,7 @@ export default function SellerDashboardPage() {
                             type="number" min="0"
                             value={editForm.stock}
                             onChange={e => setEditForm({ ...editForm, stock: e.target.value })}
-                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full border border-zinc-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                           />
                         </div>
                       </div>
@@ -223,7 +223,7 @@ export default function SellerDashboardPage() {
                         <button
                           onClick={() => saveEdit(p)}
                           disabled={updateMutation.isPending}
-                          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                          className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white text-sm font-semibold rounded-lg hover:bg-amber-600 disabled:opacity-50"
                         >
                           <Check size={14} />
                           {updateMutation.isPending ? "Sauvegarde..." : "Enregistrer"}
@@ -285,7 +285,7 @@ export default function SellerDashboardPage() {
                       <div className="flex items-center gap-1 shrink-0">
                         <button
                           onClick={() => startEdit(p)}
-                          className="p-2 text-zinc-500 hover:text-blue-400 hover:bg-blue-600/10 rounded-lg transition-colors"
+                          className="p-2 text-zinc-500 hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-colors"
                           title="Modifier"
                         >
                           <Edit size={16} />
@@ -316,8 +316,8 @@ export default function SellerDashboardPage() {
         <div className="space-y-6">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="card text-center">
-              <TrendingUp size={24} className="text-blue-400 mx-auto mb-1" />
-              <p className="text-2xl font-bold text-blue-400">{Number(dashboard.revenus ?? 0).toFixed(2)} €</p>
+              <TrendingUp size={24} className="text-amber-400 mx-auto mb-1" />
+              <p className="text-2xl font-bold text-amber-400">{Number(dashboard.revenus ?? 0).toFixed(2)} €</p>
               <p className="text-sm text-zinc-500">Revenus</p>
             </div>
             <div className="card text-center">
@@ -326,16 +326,16 @@ export default function SellerDashboardPage() {
               <p className="text-sm text-zinc-500">Commandes</p>
             </div>
             <div className="card text-center col-span-2 md:col-span-1">
-              <Package size={24} className="text-yellow-500 mx-auto mb-1" />
-              <p className="text-2xl font-bold text-yellow-400">{dashboard.commandesEnAttente}</p>
+              <Package size={24} className="text-amber-500 mx-auto mb-1" />
+              <p className="text-2xl font-bold text-amber-400">{dashboard.commandesEnAttente}</p>
               <p className="text-sm text-zinc-500">En attente</p>
             </div>
           </div>
 
           {dashboard.alertesStockFaible?.length > 0 && (
-            <div className="card border-l-4 border-yellow-400">
+            <div className="card border-l-4 border-amber-500/50">
               <div className="flex items-center gap-2 mb-3">
-                <AlertTriangle size={18} className="text-yellow-500" />
+                <AlertTriangle size={18} className="text-amber-500" />
                 <h3 className="font-semibold text-zinc-100">Alertes stock faible</h3>
               </div>
               <div className="space-y-2">
@@ -354,7 +354,7 @@ export default function SellerDashboardPage() {
       {/* ── COMMANDES ─────────────────────────────────────────────────────── */}
       {activeTab === "orders" && (
         <div className="space-y-3">
-          <h2 className="font-semibold text-zinc-100">Commandes reçues</h2>
+          <h2 className="section-title text-xl">Commandes reçues</h2>
           {!orders || orders.length === 0 ? (
             <p className="text-zinc-500 text-sm py-8 text-center">Aucune commande reçue pour l'instant.</p>
           ) : (
@@ -394,7 +394,7 @@ export default function SellerDashboardPage() {
                       </>
                     )}
                     {order.statut === "PROCESSING" && (
-                      <button onClick={() => updateStatusMutation.mutate({ id: order.id, statut: "SHIPPED" })} disabled={updateStatusMutation.isPending} className="px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50">
+                      <button onClick={() => updateStatusMutation.mutate({ id: order.id, statut: "SHIPPED" })} disabled={updateStatusMutation.isPending} className="px-3 py-1.5 bg-amber-500 text-white text-xs font-medium rounded-lg hover:bg-amber-600 disabled:opacity-50">
                         Marquer expédié
                       </button>
                     )}
