@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className="h-16 flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="shrink-0 group">
-            <img src="/logo.svg" alt="ShopFlow" className="h-9 w-auto transition-transform duration-300 group-hover:scale-105" />
+            <img src="/logo.svg" alt="ShopFlow" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Desktop links */}
