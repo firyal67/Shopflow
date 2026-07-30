@@ -36,6 +36,7 @@ public class DataInitializer implements ApplicationRunner {
         if (userRepository.count() > 0) {
             log.info("Données déjà présentes — mise à jour des images/prix et ajout de nouveaux produits");
             updateProductImages();
+            seedMoreProducts();
             return;
         }
 
@@ -225,5 +226,99 @@ public class DataInitializer implements ApplicationRunner {
             }
         }
         log.info("Images et prix mis à jour pour {} produits", products.size());
+    }
+
+    @Transactional
+    protected void seedMoreProducts() {
+        var categories = categoryRepository.findAll();
+        var catVetements = categories.stream().filter(c -> c.getNom().equals("Vetements")).findFirst().orElse(null);
+        var catElectronique = categories.stream().filter(c -> c.getNom().equals("Electronique")).findFirst().orElse(null);
+        var catMaison = categories.stream().filter(c -> c.getNom().equals("Maison")).findFirst().orElse(null);
+        var catTshirts = categories.stream().filter(c -> c.getNom().equals("T-Shirts")).findFirst().orElse(null);
+        var catPantalons = categories.stream().filter(c -> c.getNom().equals("Pantalons")).findFirst().orElse(null);
+        var catAccessoires = categories.stream().filter(c -> c.getNom().equals("Accessoires")).findFirst().orElse(null);
+
+        var sellers = sellerProfileRepository.findAll();
+        var vendeur1 = sellers.stream().filter(s -> s.getNomBoutique().equals("Mode et Style")).findFirst().map(s -> s.getUser()).orElse(null);
+        var vendeur2 = sellers.stream().filter(s -> s.getNomBoutique().equals("Tech Universe")).findFirst().map(s -> s.getUser()).orElse(null);
+        if (vendeur1 == null || vendeur2 == null) return;
+
+        var existingNames = productRepository.findAll().stream().map(p -> p.getNom()).toList();
+        int added = 0;
+
+        var newProducts = List.of(
+            // ── VETEMENTS (Mode et Style) ──
+            new NewProduct(vendeur1, "Pantalon Chino Homme", "Pantalon chino coupe slim, confortable et élégant pour le quotidien",
+                new BigDecimal("69.99"), null, 40, catVetements, catPantalons,
+                List.of("https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1594938379494-0d2fe6031c81?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Blazer Homme", "Blazer coupe moderne, parfait pour le bureau ou les occasions spéciales",
+                new BigDecimal("199.99"), new BigDecimal("169.99"), 20, catVetements,
+                List.of("https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Jupe Plissée Femme", "Jupe plissée légère et fluide, idéale pour toutes les saisons",
+                new BigDecimal("54.99"), null, 35, catVetements,
+                List.of("https://images.unsplash.com/photo-1583496661160-fb5886a0d74c?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Basket High Tops", "Baskets montantes en cuir, style streetwear tendance",
+                new BigDecimal("89.99"), new BigDecimal("69.99"), 30, catVetements,
+                List.of("https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Chemise en Lin", "Chemise en lin léger, coupe décontractée pour l'été",
+                new BigDecimal("74.99"), null, 45, catVetements, catTshirts,
+                List.of("https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Short de Sport", "Short de sport en tissu technique respirant",
+                new BigDecimal("39.99"), null, 60, catVetements, catPantalons,
+                List.of("https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400&h=400&fit=crop")),
+            // ── ELECTRONIQUE (Tech Universe) ──
+            new NewProduct(vendeur2, "Clavier Mécanique RGB", "Clavier gaming mécanique avec switches bleus et rétroéclairage RGB",
+                new BigDecimal("79.99"), null, 50, catElectronique, catAccessoires,
+                List.of("https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur2, "Casque Audio Sans Fil", "Casque bluetooth avec réduction de bruit active, 40h d'autonomie",
+                new BigDecimal("149.99"), new BigDecimal("119.99"), 30, catElectronique, catAccessoires,
+                List.of("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur2, "Disque Dur SSD 1To", "SSD NVMe 1To, vitesses de lecture jusqu'à 3500 Mo/s",
+                new BigDecimal("129.99"), null, 25, catElectronique, catAccessoires,
+                List.of("https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur2, "Station d'Accueil USB-C", "Hub USB-C 7-en-1 avec HDMI 4K, USB 3.0, SD/microSD",
+                new BigDecimal("59.99"), null, 35, catElectronique, catAccessoires,
+                List.of("https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=400&h=400&fit=crop")),
+            // ── MAISON (Mode et Style) ──
+            new NewProduct(vendeur1, "Coussin Décoratif Velours", "Coussin en velours haut de gamme, disponible en plusieurs couleurs",
+                new BigDecimal("29.99"), null, 80, catMaison,
+                List.of("https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Lampe d'Ambiance LED", "Lampe d'ambiance avec variateur d'intensité et 3 températures",
+                new BigDecimal("39.99"), new BigDecimal("29.99"), 50, catMaison,
+                List.of("https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Tapis de Salon Shaggy", "Tapis shaggy ultra-doux 160x230cm, idéal pour le salon",
+                new BigDecimal("129.99"), null, 15, catMaison,
+                List.of("https://images.unsplash.com/photo-1600166898405-da9535204843?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Miroir Mural Design", "Miroir mural design cadre aluminium, 80x120cm",
+                new BigDecimal("79.99"), null, 20, catMaison,
+                List.of("https://images.unsplash.com/photo-1619810223564-d5fdbe40b0c3?w=400&h=400&fit=crop")),
+            new NewProduct(vendeur1, "Set de Cuisine 5 Pièces", "Set de cuisine anti-adhésif composé de 5 ustensiles essentiels",
+                new BigDecimal("89.99"), null, 30, catMaison,
+                List.of("https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop"))
+        );
+
+        for (var np : newProducts) {
+            if (!existingNames.contains(np.nom)) {
+                productRepository.save(Product.builder().seller(np.seller)
+                    .nom(np.nom).description(np.description)
+                    .prix(np.prix).prixPromo(np.prixPromo).stock(np.stock)
+                    .images(np.images)
+                    .categories(np.categories).noteMoyenne(4.2).totalVentes(0).build());
+                added++;
+            }
+        }
+
+        if (added > 0) {
+            log.info("{} nouveaux produits ajoutés → total: {}", added, productRepository.count());
+        }
+    }
+
+    private record NewProduct(User seller, String nom, String description, BigDecimal prix, BigDecimal prixPromo, int stock, Set<Category> categories, List<String> images) {
+        NewProduct(User seller, String nom, String description, BigDecimal prix, BigDecimal prixPromo, int stock, Category c1, Category c2, List<String> images) {
+            this(seller, nom, description, prix, prixPromo, stock, Set.of(c1, c2), images);
+        }
+        NewProduct(User seller, String nom, String description, BigDecimal prix, BigDecimal prixPromo, int stock, Category c1, List<String> images) {
+            this(seller, nom, description, prix, prixPromo, stock, Set.of(c1), images);
+        }
     }
 }
