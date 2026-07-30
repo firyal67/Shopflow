@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 44" fill="none">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="44" height="44" rx="12" fill="url(#lg)"/>
+  <path d="M14 20L12 16L22 12L32 16L30 20" stroke="#09090b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 16V32L22 36L32 32V16" stroke="#09090b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 24C18 26.2 19.8 28 22 28C24.2 28 26 26.2 26 24" stroke="#09090b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="30" font-family="Inter,-apple-system,sans-serif" font-weight="800" font-size="26" letter-spacing="-0.5" fill="#f4f4f5">Shop</text>
+  <text x="118" y="30" font-family="Inter,-apple-system,sans-serif" font-weight="400" font-size="26" letter-spacing="-0.5" fill="#f59e0b">Flow</text>
+</svg>
