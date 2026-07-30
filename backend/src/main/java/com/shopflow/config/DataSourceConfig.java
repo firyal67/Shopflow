@@ -22,7 +22,7 @@ public class DataSourceConfig {
         }
 
         String databaseUrl = System.getenv("DATABASE_URL");
-        if (databaseUrl != null && databaseUrl.startsWith("postgres://")) {
+        if (databaseUrl != null && (databaseUrl.startsWith("postgres://") || databaseUrl.startsWith("postgresql://"))) {
             String rest = databaseUrl.substring(11);
             int atIndex = rest.lastIndexOf('@');
             if (atIndex < 0) throw new IllegalStateException("DATABASE_URL invalide : " + databaseUrl);
