@@ -26,7 +26,7 @@ export default function RatingStars({
           className={`${
             star <= Math.round(rating)
               ? "fill-yellow-400 text-yellow-400"
-              : "text-gray-300"
+              : "text-zinc-600"
           } ${interactive ? "cursor-pointer hover:text-yellow-400 transition-colors" : ""}`}
           onClick={() => interactive && onChange?.(star)}
         />

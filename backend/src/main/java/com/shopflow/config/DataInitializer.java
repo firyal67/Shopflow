@@ -88,49 +88,49 @@ public class DataInitializer implements ApplicationRunner {
         Product p1 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("T-Shirt Premium Coton Bio").description("T-shirt en coton bio, coupe moderne, disponible en plusieurs tailles")
                 .prix(new BigDecimal("29.99")).prixPromo(new BigDecimal("19.99")).stock(50)
-                .images(List.of("https://picsum.photos/seed/tshirt1/400/400", "https://picsum.photos/seed/tshirt2/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements, tshirts)).noteMoyenne(4.5).totalVentes(120).build());
 
         Product p2 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("Jean Slim Fit").description("Jean slim fit stretch, confortable et elegant")
                 .prix(new BigDecimal("59.99")).stock(30)
-                .images(List.of("https://picsum.photos/seed/jean1/400/400", "https://picsum.photos/seed/jean2/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements, pantalons)).noteMoyenne(4.2).totalVentes(85).build());
 
         Product p3 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("Robe Ete Fleurie").description("Robe legere parfaite pour l'ete, motif floral")
                 .prix(new BigDecimal("45.00")).prixPromo(new BigDecimal("35.00")).stock(25)
-                .images(List.of("https://picsum.photos/seed/robe1/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements)).noteMoyenne(4.7).totalVentes(60).build());
 
         Product p4 = productRepository.save(Product.builder().seller(vendeur1)
                 .nom("Veste en Jean").description("Veste en jean classique, coupe droite")
                 .prix(new BigDecimal("79.99")).stock(20)
-                .images(List.of("https://picsum.photos/seed/veste1/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop"))
                 .categories(Set.of(vetements)).noteMoyenne(4.0).totalVentes(45).build());
 
         Product p5 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Ecouteurs Bluetooth Pro").description("Ecouteurs sans fil avec reduction de bruit active, 30h d'autonomie")
                 .prix(new BigDecimal("89.99")).prixPromo(new BigDecimal("69.99")).stock(40)
-                .images(List.of("https://picsum.photos/seed/ecouteurs1/400/400", "https://picsum.photos/seed/ecouteurs2/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(4.6).totalVentes(200).build());
 
         Product p6 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Chargeur Rapide USB-C 65W").description("Chargeur rapide compatible avec tous les appareils USB-C")
                 .prix(new BigDecimal("24.99")).stock(100)
-                .images(List.of("https://picsum.photos/seed/chargeur1/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(4.3).totalVentes(350).build());
 
         Product p7 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Coque iPhone 15 Pro").description("Coque de protection premium en silicone liquide")
                 .prix(new BigDecimal("19.99")).prixPromo(new BigDecimal("14.99")).stock(80)
-                .images(List.of("https://picsum.photos/seed/coque1/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(4.1).totalVentes(180).build());
 
         Product p8 = productRepository.save(Product.builder().seller(vendeur2)
                 .nom("Support Telephone Voiture").description("Support magnetique universel pour tableau de bord")
                 .prix(new BigDecimal("15.99")).stock(60)
-                .images(List.of("https://picsum.photos/seed/support1/400/400"))
+                .images(List.of("https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=400&h=400&fit=crop"))
                 .categories(Set.of(electronique, accessoires)).noteMoyenne(3.9).totalVentes(95).build());
 
         log.info("8 produits créés");

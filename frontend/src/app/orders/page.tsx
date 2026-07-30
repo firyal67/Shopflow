@@ -14,19 +14,19 @@ export default function OrdersPage() {
   });
 
   if (isLoading) {
-    return <div className="space-y-4">{Array(3).fill(0).map((_, i) => <div key={i} className="h-24 bg-gray-200 rounded-xl animate-pulse" />)}</div>;
+    return <div className="space-y-4">{Array(3).fill(0).map((_, i) => <div key={i} className="h-24 bg-zinc-800 rounded-xl animate-pulse" />)}</div>;
   }
 
   const orders: Order[] = data?.content ?? [];
 
   return (
     <div className="max-w-3xl mx-auto space-y-4">
-      <h1 className="text-2xl font-bold text-gray-900">Mes commandes</h1>
+      <h1 className="text-2xl font-bold text-zinc-100">Mes commandes</h1>
 
       {orders.length === 0 ? (
         <div className="text-center py-16">
-          <Package size={48} className="text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500">Aucune commande pour le moment</p>
+          <Package size={48} className="text-zinc-600 mx-auto mb-4" />
+          <p className="text-zinc-500">Aucune commande pour le moment</p>
           <Link href="/products" className="btn-primary mt-4 inline-block">
             Commencer mes achats
           </Link>
@@ -36,8 +36,8 @@ export default function OrdersPage() {
           <div key={order.id} className="card hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-3">
               <div>
-                <p className="font-mono font-bold text-gray-900">{order.numeroCommande}</p>
-                <p className="text-sm text-gray-500">
+                <p className="font-mono font-bold text-zinc-100">{order.numeroCommande}</p>
+                <p className="text-sm text-zinc-500">
                   {new Date(order.dateCommande).toLocaleDateString("fr-FR", {
                     day: "numeric", month: "long", year: "numeric"
                   })}
@@ -51,7 +51,7 @@ export default function OrdersPage() {
               </div>
             </div>
 
-            <div className="text-sm text-gray-600 mb-3">
+            <div className="text-sm text-zinc-400 mb-3">
               {order.lignes.slice(0, 2).map((item) => (
                 <span key={item.id} className="mr-2">
                   {item.productNom} ×{item.quantite}
@@ -61,10 +61,10 @@ export default function OrdersPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <p className="font-bold text-gray-900">{order.totalTTC.toFixed(2)} €</p>
+              <p className="font-bold text-zinc-100">{order.totalTTC.toFixed(2)} €</p>
               <Link
                 href={`/orders/${order.id}`}
-                className="text-sm text-primary-600 hover:underline"
+                className="text-sm text-blue-400 hover:underline"
               >
                 Voir le détail →
               </Link>

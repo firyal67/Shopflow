@@ -53,17 +53,17 @@ export default function ProductDetailPage() {
   if (isLoading) {
     return (
       <div className="grid md:grid-cols-2 gap-8 animate-pulse">
-        <div className="aspect-square bg-gray-200 rounded-xl" />
+        <div className="aspect-square bg-zinc-800 rounded-xl" />
         <div className="space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-3/4" />
-          <div className="h-6 bg-gray-200 rounded w-1/4" />
-          <div className="h-24 bg-gray-200 rounded" />
+          <div className="h-8 bg-zinc-800 rounded w-3/4" />
+          <div className="h-6 bg-zinc-800 rounded w-1/4" />
+          <div className="h-24 bg-zinc-800 rounded" />
         </div>
       </div>
     );
   }
 
-  if (!product) return <p className="text-center py-16 text-gray-500">Produit introuvable</p>;
+  if (!product) return <p className="text-center py-16 text-zinc-500">Produit introuvable</p>;
 
   const currentPrice = product.enPromotion ? product.prixPromo! : product.prix;
   const variantGroups = product.variants.reduce((acc, v) => {
@@ -76,7 +76,7 @@ export default function ProductDetailPage() {
     <div className="space-y-12">
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-3">
-          <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100">
+          <div className="relative aspect-square rounded-xl overflow-hidden bg-zinc-800">
             <Image
               src={product.images[selectedImage] || "/placeholder.svg"}
               alt={product.nom}
@@ -84,7 +84,7 @@ export default function ProductDetailPage() {
               className="object-cover"
             />
             {product.enPromotion && (
-              <span className="absolute top-3 left-3 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+              <span className="absolute top-3 left-3 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg shadow-red-500/20">
                 -{Math.round(product.pourcentageRemise)}%
               </span>
             )}
@@ -95,7 +95,7 @@ export default function ProductDetailPage() {
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 ${selectedImage === i ? "border-primary-500" : "border-transparent"}`}
+                  className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 ${selectedImage === i ? "border-blue-500" : "border-zinc-700"}`}
                 >
                   <Image src={img} alt="" fill className="object-cover" />
                 </button>
@@ -106,27 +106,27 @@ export default function ProductDetailPage() {
 
         <div className="space-y-4">
           <div>
-            <p className="text-sm text-gray-500">{product.sellerNomBoutique}</p>
-            <h1 className="text-2xl font-bold text-gray-900">{product.nom}</h1>
+            <p className="text-sm text-zinc-500">{product.sellerNomBoutique}</p>
+            <h1 className="text-2xl font-bold text-zinc-100">{product.nom}</h1>
           </div>
           <div className="flex items-center gap-3">
             <RatingStars rating={product.noteMoyenne} size={18} />
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-zinc-500">
               {product.noteMoyenne.toFixed(1)} ({reviews?.totalElements ?? 0} avis)
             </span>
           </div>
           <div className="flex items-baseline gap-3">
-            <span className="text-3xl font-bold text-gray-900">{currentPrice.toFixed(2)} €</span>
+            <span className="text-3xl font-bold text-zinc-100">{currentPrice.toFixed(2)} €</span>
             {product.enPromotion && (
-              <span className="text-xl text-gray-400 line-through">{product.prix.toFixed(2)} €</span>
+              <span className="text-xl text-zinc-500 line-through">{product.prix.toFixed(2)} €</span>
             )}
           </div>
           {product.description && (
-            <p className="text-gray-600 leading-relaxed">{product.description}</p>
+            <p className="text-zinc-400 leading-relaxed">{product.description}</p>
           )}
           {Object.entries(variantGroups).map(([attribut, variants]) => (
             <div key={attribut}>
-              <p className="text-sm font-medium text-gray-700 mb-2">{attribut}</p>
+              <p className="text-sm font-medium text-zinc-300 mb-2">{attribut}</p>
               <div className="flex flex-wrap gap-2">
                 {variants.map((v) => (
                   <button
@@ -134,8 +134,8 @@ export default function ProductDetailPage() {
                     onClick={() => setSelectedVariant(v.id === selectedVariant ? null : v.id)}
                     className={`px-3 py-1.5 border rounded-lg text-sm font-medium transition-colors ${
                       selectedVariant === v.id
-                        ? "border-primary-500 bg-primary-50 text-primary-700"
-                        : "border-gray-200 text-gray-700 hover:border-primary-300"
+                        ? "border-blue-500 bg-blue-600/20 text-blue-400"
+                        : "border-zinc-700 text-zinc-300 hover:border-blue-500"
                     }`}
                   >
                     {v.valeur}
@@ -146,15 +146,15 @@ export default function ProductDetailPage() {
             </div>
           ))}
           <div className="flex items-center gap-2 text-sm">
-            <Package size={16} className={product.stock > 0 ? "text-green-500" : "text-red-500"} />
-            <span className={product.stock > 0 ? "text-green-600" : "text-red-600"}>
+            <Package size={16} className={product.stock > 0 ? "text-green-400" : "text-red-400"} />
+            <span className={product.stock > 0 ? "text-green-400" : "text-red-400"}>
               {product.stock > 0 ? `${product.stock} en stock` : "Rupture de stock"}
             </span>
           </div>
           {product.categories.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {product.categories.map((c) => (
-                <span key={c.id} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                <span key={c.id} className="px-2 py-1 bg-zinc-800 text-zinc-400 text-xs rounded-full">
                   {c.nom}
                 </span>
               ))}
@@ -174,21 +174,21 @@ export default function ProductDetailPage() {
       </div>
 
       <section>
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
+        <h2 className="text-xl font-bold text-zinc-100 mb-4">
           Avis clients ({reviews?.totalElements ?? 0})
         </h2>
         {reviews?.content.length === 0 ? (
-          <p className="text-gray-500">Aucun avis pour ce produit.</p>
+          <p className="text-zinc-500">Aucun avis pour ce produit.</p>
         ) : (
           <div className="space-y-4">
             {reviews?.content.map((review) => (
               <div key={review.id} className="card">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-medium text-gray-900">{review.customerNom}</span>
+                  <span className="font-medium text-zinc-100">{review.customerNom}</span>
                   <RatingStars rating={review.note} size={14} />
                 </div>
-                {review.commentaire && <p className="text-gray-600 text-sm">{review.commentaire}</p>}
-                <p className="text-xs text-gray-400 mt-2">
+                {review.commentaire && <p className="text-zinc-400 text-sm">{review.commentaire}</p>}
+                <p className="text-xs text-zinc-600 mt-2">
                   {new Date(review.dateCreation).toLocaleDateString("fr-FR")}
                 </p>
               </div>

@@ -2,13 +2,13 @@ import { OrderStatus } from "@/types";
 import clsx from "clsx";
 
 const STATUS_CONFIG: Record<OrderStatus, { label: string; className: string }> = {
-  PENDING: { label: "En attente", className: "bg-yellow-100 text-yellow-800" },
-  PAID: { label: "Payée", className: "bg-blue-100 text-blue-800" },
-  PROCESSING: { label: "En traitement", className: "bg-purple-100 text-purple-800" },
-  SHIPPED: { label: "Expédiée", className: "bg-indigo-100 text-indigo-800" },
-  DELIVERED: { label: "Livrée", className: "bg-green-100 text-green-800" },
-  CANCELLED: { label: "Annulée", className: "bg-red-100 text-red-800" },
-  REFUNDED: { label: "Remboursée", className: "bg-gray-100 text-gray-800" },
+  PENDING: { label: "En attente", className: "bg-yellow-500/10 text-yellow-400" },
+  PAID: { label: "Payée", className: "bg-blue-500/10 text-blue-400" },
+  PROCESSING: { label: "En traitement", className: "bg-purple-500/10 text-purple-400" },
+  SHIPPED: { label: "Expédiée", className: "bg-indigo-500/10 text-indigo-400" },
+  DELIVERED: { label: "Livrée", className: "bg-green-500/10 text-green-400" },
+  CANCELLED: { label: "Annulée", className: "bg-red-500/10 text-red-400" },
+  REFUNDED: { label: "Remboursée", className: "bg-zinc-500/10 text-zinc-400" },
 };
 
 export default function OrderStatusBadge({ status }: { status: OrderStatus }) {

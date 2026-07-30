@@ -120,11 +120,11 @@ function ProductsContent() {
       {/* Filtres sidebar */}
       <aside className="hidden lg:block w-56 shrink-0 space-y-6">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+          <h3 className="font-semibold text-zinc-100 flex items-center gap-2">
             <SlidersHorizontal size={16} /> Filtres
           </h3>
           {hasActiveFilters && (
-            <button onClick={clearFilters} className="text-xs text-primary-600 hover:underline flex items-center gap-1">
+            <button onClick={clearFilters} className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
               <X size={12} /> Effacer
             </button>
           )}
@@ -132,12 +132,12 @@ function ProductsContent() {
 
         {/* Catégories */}
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-2">Catégories</h4>
+          <h4 className="text-sm font-medium text-zinc-400 mb-2">Catégories</h4>
           <div className="space-y-1">
             <button
               onClick={() => handleCategoryClick()}
               className={`w-full text-left text-sm px-2 py-1.5 rounded-lg transition-colors ${
-                !categoryId ? "bg-primary-50 text-primary-600 font-medium" : "text-gray-600 hover:bg-gray-50"
+                !categoryId ? "bg-blue-600/20 text-blue-400 font-medium" : "text-zinc-400 hover:bg-zinc-800"
               }`}
             >
               Toutes les catégories
@@ -148,8 +148,8 @@ function ProductsContent() {
                 onClick={() => handleCategoryClick(cat.id)}
                 className={`w-full text-left text-sm px-2 py-1.5 rounded-lg transition-colors ${
                   categoryId === String(cat.id)
-                    ? "bg-primary-50 text-primary-600 font-medium"
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? "bg-blue-600/20 text-blue-400 font-medium"
+                    : "text-zinc-400 hover:bg-zinc-800"
                 }`}
               >
                 {cat.nom}
@@ -160,21 +160,21 @@ function ProductsContent() {
 
         {/* Prix */}
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-2">Prix (€)</h4>
+          <h4 className="text-sm font-medium text-zinc-400 mb-2">Prix (€)</h4>
           <div className="flex gap-2">
             <input
               type="number"
               placeholder="Min"
               value={prixMin}
               onChange={(e) => { setPrixMin(e.target.value); setPage(0); }}
-              className="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
               type="number"
               placeholder="Max"
               value={prixMax}
               onChange={(e) => { setPrixMax(e.target.value); setPage(0); }}
-              className="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -185,9 +185,9 @@ function ProductsContent() {
             type="checkbox"
             checked={promo === "true"}
             onChange={(e) => handlePromoToggle(e.target.checked)}
-            className="rounded text-primary-600 border-gray-300"
+            className="rounded text-blue-500 bg-zinc-800 border-zinc-600 focus:ring-blue-500"
           />
-          <span className="text-sm text-gray-700">🔥 En promotion</span>
+          <span className="text-sm text-zinc-300">🔥 En promotion</span>
         </label>
       </aside>
 
@@ -196,12 +196,12 @@ function ProductsContent() {
         {/* Barre de recherche */}
         <form onSubmit={handleSearch} className="mb-5 flex gap-2">
           <div className="relative flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
             <input
               name="q"
               defaultValue={q}
               placeholder="Rechercher un produit..."
-              className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg pl-9 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <button type="submit" className="btn-primary px-5">Rechercher</button>
@@ -209,15 +209,15 @@ function ProductsContent() {
 
         {/* Barre résultats + tri */}
         <div className="flex items-center justify-between mb-4 gap-4">
-          <p className="text-sm text-gray-500 shrink-0">
+          <p className="text-sm text-zinc-500 shrink-0">
             {isLoading ? "Chargement..." : `${data?.totalElements ?? 0} produit(s)`}
           </p>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-500 hidden sm:inline">Trier par :</span>
+            <span className="text-sm text-zinc-500 hidden sm:inline">Trier par :</span>
             <select
               value={sort}
               onChange={(e) => { setSort(e.target.value); setPage(0); }}
-              className="border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
+              className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 text-sm text-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {SORT_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -230,25 +230,25 @@ function ProductsContent() {
         {hasActiveFilters && (
           <div className="flex flex-wrap gap-2 mb-4">
             {q && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary-50 text-primary-700 text-xs rounded-full">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600/20 text-blue-400 text-xs rounded-full">
                 Recherche : "{q}"
                 <button onClick={() => router.push("/products")}><X size={12} /></button>
               </span>
             )}
             {categoryId && categories && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary-50 text-primary-700 text-xs rounded-full">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600/20 text-blue-400 text-xs rounded-full">
                 {categories.find((c) => String(c.id) === categoryId)?.nom}
                 <button onClick={() => handleCategoryClick()}><X size={12} /></button>
               </span>
             )}
             {promo === "true" && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-red-50 text-red-600 text-xs rounded-full">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-red-500/20 text-red-400 text-xs rounded-full">
                 🔥 Promotions
                 <button onClick={() => handlePromoToggle(false)}><X size={12} /></button>
               </span>
             )}
             {(prixMin || prixMax) && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary-50 text-primary-700 text-xs rounded-full">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-600/20 text-blue-400 text-xs rounded-full">
                 Prix : {prixMin || "0"} – {prixMax || "∞"} €
                 <button onClick={() => { setPrixMin(""); setPrixMax(""); }}><X size={12} /></button>
               </span>
@@ -262,8 +262,8 @@ function ProductsContent() {
             {Array(12).fill(0).map((_, i) => <ProductCardSkeleton key={i} />)}
           </div>
         ) : data?.content.length === 0 ? (
-          <div className="text-center py-16 text-gray-500">
-            <p className="text-lg font-medium mb-2">Aucun produit trouvé</p>
+          <div className="text-center py-16 text-zinc-500">
+            <p className="text-lg font-medium mb-2 text-zinc-300">Aucun produit trouvé</p>
             <p className="text-sm">Essayez de modifier vos filtres</p>
             {hasActiveFilters && (
               <button onClick={clearFilters} className="btn-primary mt-4">
@@ -289,7 +289,7 @@ function ProductsContent() {
                 <button
                   onClick={() => setPage((p) => Math.max(0, p - 1))}
                   disabled={page === 0}
-                  className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 hover:border-primary-500 transition-colors"
+                  className="px-3 py-2 rounded-lg text-sm border border-zinc-700 text-zinc-300 disabled:opacity-40 hover:border-blue-500 transition-colors"
                 >
                   ←
                 </button>
@@ -299,8 +299,8 @@ function ProductsContent() {
                     onClick={() => setPage(i)}
                     className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
                       page === i
-                        ? "bg-primary-600 text-white"
-                        : "bg-white border border-gray-200 text-gray-700 hover:border-primary-500"
+                        ? "bg-blue-600 text-white"
+                        : "bg-zinc-900 border border-zinc-700 text-zinc-300 hover:border-blue-500"
                     }`}
                   >
                     {i + 1}
@@ -309,7 +309,7 @@ function ProductsContent() {
                 <button
                   onClick={() => setPage((p) => Math.min(data.totalPages - 1, p + 1))}
                   disabled={page === data.totalPages - 1}
-                  className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 hover:border-primary-500 transition-colors"
+                  className="px-3 py-2 rounded-lg text-sm border border-zinc-700 text-zinc-300 disabled:opacity-40 hover:border-blue-500 transition-colors"
                 >
                   →
                 </button>

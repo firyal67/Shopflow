@@ -50,27 +50,27 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Mon profil</h1>
+      <h1 className="text-2xl font-bold text-zinc-100">Mon profil</h1>
 
       {/* Infos personnelles */}
       <div className="card space-y-3">
-        <h2 className="font-semibold text-gray-900">Informations personnelles</h2>
+        <h2 className="font-semibold text-zinc-100">Informations personnelles</h2>
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="text-gray-500">Prénom</p>
-            <p className="font-medium text-gray-900">{user?.prenom}</p>
+            <p className="text-zinc-500">Prénom</p>
+            <p className="font-medium text-zinc-100">{user?.prenom}</p>
           </div>
           <div>
-            <p className="text-gray-500">Nom</p>
-            <p className="font-medium text-gray-900">{user?.nom}</p>
+            <p className="text-zinc-500">Nom</p>
+            <p className="font-medium text-zinc-100">{user?.nom}</p>
           </div>
           <div className="col-span-2">
-            <p className="text-gray-500">Email</p>
-            <p className="font-medium text-gray-900">{user?.email}</p>
+            <p className="text-zinc-500">Email</p>
+            <p className="font-medium text-zinc-100">{user?.email}</p>
           </div>
           <div>
-            <p className="text-gray-500">Rôle</p>
-            <p className="font-medium text-gray-900">{user?.role}</p>
+            <p className="text-zinc-500">Rôle</p>
+            <p className="font-medium text-zinc-100">{user?.role}</p>
           </div>
         </div>
       </div>
@@ -78,23 +78,23 @@ export default function ProfilePage() {
       {/* Commandes récentes */}
       <div className="card space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-gray-900">Commandes en cours</h2>
-          <Link href="/orders" className="text-sm text-primary-600 hover:underline">Voir tout</Link>
+          <h2 className="font-semibold text-zinc-100">Commandes en cours</h2>
+          <Link href="/orders" className="text-sm text-blue-400 hover:underline">Voir tout</Link>
         </div>
-        {myOrders?.length === 0 && <p className="text-sm text-gray-500">Aucune commande</p>}
+        {myOrders?.length === 0 && <p className="text-sm text-zinc-500">Aucune commande</p>}
         {myOrders?.map((order: any) => (
-          <div key={order.id} className="flex items-center justify-between text-sm border border-gray-100 rounded-lg p-3">
+          <div key={order.id} className="flex items-center justify-between text-sm border border-zinc-800 rounded-lg p-3">
             <div>
-              <p className="font-mono font-bold text-gray-900">{order.numeroCommande}</p>
-              <p className="text-gray-500">{order.totalTTC.toFixed(2)} €</p>
+              <p className="font-mono font-bold text-zinc-100">{order.numeroCommande}</p>
+              <p className="text-zinc-500">{order.totalTTC.toFixed(2)} €</p>
             </div>
             <div className="flex items-center gap-3">
               <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                order.statut === "DELIVERED" ? "bg-green-100 text-green-700" :
-                order.statut === "CANCELLED" ? "bg-red-100 text-red-700" :
-                "bg-yellow-100 text-yellow-700"
+                order.statut === "DELIVERED" ? "bg-green-500/10 text-green-400" :
+                order.statut === "CANCELLED" ? "bg-red-500/10 text-red-400" :
+                "bg-yellow-500/10 text-yellow-400"
               }`}>{order.statut}</span>
-              <Link href={`/orders/${order.id}`} className="text-primary-600 hover:underline">Détail</Link>
+              <Link href={`/orders/${order.id}`} className="text-blue-400 hover:underline">Détail</Link>
             </div>
           </div>
         ))}
@@ -103,28 +103,28 @@ export default function ProfilePage() {
       {/* Adresses */}
       <div className="card space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-gray-900 flex items-center gap-2">
+          <h2 className="font-semibold text-zinc-100 flex items-center gap-2">
             <MapPin size={16} /> Adresses de livraison
           </h2>
           <button
             onClick={() => setShowAddAddress(!showAddAddress)}
-            className="flex items-center gap-1 text-sm text-primary-600 hover:underline"
+            className="flex items-center gap-1 text-sm text-blue-400 hover:underline"
           >
             <Plus size={14} /> Ajouter
           </button>
         </div>
 
-        {addresses?.length === 0 && <p className="text-sm text-gray-500">Aucune adresse enregistrée</p>}
+        {addresses?.length === 0 && <p className="text-sm text-zinc-500">Aucune adresse enregistrée</p>}
         {addresses?.map((addr: any) => (
-          <div key={addr.id} className="flex items-start justify-between border border-gray-100 rounded-lg p-3">
+          <div key={addr.id} className="flex items-start justify-between border border-zinc-800 rounded-lg p-3">
             <div>
-              <p className="font-medium text-gray-900 text-sm">{addr.rue}</p>
-              <p className="text-sm text-gray-500">{addr.codePostal} {addr.ville}, {addr.pays}</p>
-              {addr.principal && <span className="text-xs text-primary-600 font-medium">Principale</span>}
+              <p className="font-medium text-zinc-100 text-sm">{addr.rue}</p>
+              <p className="text-sm text-zinc-500">{addr.codePostal} {addr.ville}, {addr.pays}</p>
+              {addr.principal && <span className="text-xs text-blue-400 font-medium">Principale</span>}
             </div>
             <button
               onClick={() => deleteMutation.mutate(addr.id)}
-              className="text-gray-400 hover:text-red-500 transition-colors"
+              className="text-zinc-500 hover:text-red-400 transition-colors"
             >
               <Trash2 size={14} />
             </button>
@@ -132,14 +132,14 @@ export default function ProfilePage() {
         ))}
 
         {showAddAddress && (
-          <div className="border border-gray-200 rounded-lg p-4 space-y-3">
+          <div className="border border-zinc-700 rounded-lg p-4 space-y-3">
             <input placeholder="Rue" value={newAddress.rue} onChange={(e) => setNewAddress({ ...newAddress, rue: e.target.value })} className="input-field" />
             <div className="grid grid-cols-2 gap-3">
               <input placeholder="Code postal" value={newAddress.codePostal} onChange={(e) => setNewAddress({ ...newAddress, codePostal: e.target.value })} className="input-field" />
               <input placeholder="Ville" value={newAddress.ville} onChange={(e) => setNewAddress({ ...newAddress, ville: e.target.value })} className="input-field" />
             </div>
             <input placeholder="Pays" value={newAddress.pays} onChange={(e) => setNewAddress({ ...newAddress, pays: e.target.value })} className="input-field" />
-            <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+            <label className="flex items-center gap-2 text-sm text-zinc-300 cursor-pointer">
               <input type="checkbox" checked={newAddress.principal} onChange={(e) => setNewAddress({ ...newAddress, principal: e.target.checked })} />
               Adresse principale
             </label>
@@ -153,24 +153,24 @@ export default function ProfilePage() {
 
       {/* Mes avis */}
       <div className="card space-y-3">
-        <h2 className="font-semibold text-gray-900 flex items-center gap-2">
+        <h2 className="font-semibold text-zinc-100 flex items-center gap-2">
           <Star size={16} className="text-yellow-400" /> Mes derniers avis
         </h2>
         {myReviews.length === 0 ? (
-          <p className="text-sm text-gray-500">Vous n'avez pas encore laissé d'avis.</p>
+          <p className="text-sm text-zinc-500">Vous n'avez pas encore laissé d'avis.</p>
         ) : (
           myReviews.map((review: any) => (
-            <div key={review.id} className="border border-gray-100 rounded-lg p-3 space-y-1">
+            <div key={review.id} className="border border-zinc-800 rounded-lg p-3 space-y-1">
               <div className="flex items-center justify-between">
-                <Link href={`/products/${review.productId}`} className="font-medium text-gray-900 text-sm hover:text-primary-600">
+                <Link href={`/products/${review.productId}`} className="font-medium text-zinc-100 text-sm hover:text-blue-400">
                   Produit #{review.productId}
                 </Link>
                 <RatingStars rating={review.note} size={14} />
               </div>
-              {review.commentaire && <p className="text-sm text-gray-600">{review.commentaire}</p>}
-              <p className="text-xs text-gray-400">
+              {review.commentaire && <p className="text-sm text-zinc-400">{review.commentaire}</p>}
+              <p className="text-xs text-zinc-500">
                 {new Date(review.dateCreation).toLocaleDateString("fr-FR")}
-                {!review.approuve && <span className="ml-2 text-yellow-600">En attente de modération</span>}
+                {!review.approuve && <span className="ml-2 text-yellow-400">En attente de modération</span>}
               </p>
             </div>
           ))

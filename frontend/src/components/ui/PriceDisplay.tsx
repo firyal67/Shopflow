@@ -29,20 +29,20 @@ export default function PriceDisplay({
         <span className={`${classes.main} text-red-600`}>
           {Number(prixPromo).toFixed(2)} €
         </span>
-        <span className={`${classes.old} text-gray-400 line-through`}>
-          {Number(prix).toFixed(2)} €
-        </span>
-        {pourcentageRemise && pourcentageRemise > 0 && (
-          <span className={`${classes.badge} bg-red-100 text-red-700 rounded-full font-medium`}>
-            -{Math.round(pourcentageRemise)}%
+          <span className={`${classes.old} text-zinc-500 line-through`}>
+            {Number(prix).toFixed(2)} €
           </span>
-        )}
+          {pourcentageRemise && pourcentageRemise > 0 && (
+            <span className={`${classes.badge} bg-red-500/20 text-red-400 rounded-full font-medium`}>
+              -{Math.round(pourcentageRemise)}%
+            </span>
+          )}
       </div>
     );
   }
 
   return (
-    <span className={`${classes.main} text-gray-900 ${className}`}>
+    <span className={`${classes.main} text-zinc-100 ${className}`}>
       {Number(prix).toFixed(2)} €
     </span>
   );

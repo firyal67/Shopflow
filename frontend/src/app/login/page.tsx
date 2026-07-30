@@ -40,30 +40,30 @@ export default function LoginPage() {
   return (
     <div className="max-w-md mx-auto mt-8">
       <div className="card">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Connexion</h1>
+        <h1 className="text-2xl font-bold text-zinc-100 mb-6">Connexion</h1>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
+          <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="label">Email</label>
             <input {...register("email")} type="email" className="input-field" placeholder="vous@exemple.com" />
-            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+            {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-gray-700">Mot de passe</label>
-              <Link href="/reset-password" className="text-xs text-primary-600 hover:underline">
+              <label className="label">Mot de passe</label>
+              <Link href="/reset-password" className="text-xs text-blue-400 hover:text-blue-300">
                 Mot de passe oublié ?
               </Link>
             </div>
             <input {...register("motDePasse")} type="password" className="input-field" placeholder="••••••••" />
-            {errors.motDePasse && <p className="text-red-500 text-xs mt-1">{errors.motDePasse.message}</p>}
+            {errors.motDePasse && <p className="text-red-400 text-xs mt-1">{errors.motDePasse.message}</p>}
           </div>
 
           <button type="submit" disabled={isSubmitting} className="btn-primary w-full py-2.5">
@@ -71,9 +71,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-4">
+        <p className="text-center text-sm text-zinc-500 mt-4">
           Pas encore de compte ?{" "}
-          <Link href="/register" className="text-primary-600 hover:underline font-medium">
+          <Link href="/register" className="text-blue-400 hover:text-blue-300 font-medium">
             S'inscrire
           </Link>
         </p>

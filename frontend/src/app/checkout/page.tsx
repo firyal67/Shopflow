@@ -45,10 +45,10 @@ export default function CheckoutPage() {
   if (orderSuccess) {
     return (
       <div className="max-w-md mx-auto text-center py-16">
-        <CheckCircle size={64} className="text-green-500 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Commande confirmée !</h1>
-        <p className="text-gray-600 mb-2">Numéro de commande :</p>
-        <p className="text-xl font-mono font-bold text-primary-600 mb-6">{orderSuccess}</p>
+        <CheckCircle size={64} className="text-green-400 mx-auto mb-4" />
+        <h1 className="text-2xl font-bold text-zinc-100 mb-2">Commande confirmée !</h1>
+        <p className="text-zinc-400 mb-2">Numéro de commande :</p>
+        <p className="text-xl font-mono font-bold text-blue-400 mb-6">{orderSuccess}</p>
         <button onClick={() => router.push("/orders")} className="btn-primary">
           Voir mes commandes
         </button>
@@ -58,11 +58,11 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Finaliser la commande</h1>
+      <h1 className="text-2xl font-bold text-zinc-100">Finaliser la commande</h1>
 
       {/* Adresses */}
       <div className="card space-y-4">
-        <h2 className="font-semibold text-gray-900">Adresse de livraison</h2>
+        <h2 className="font-semibold text-zinc-100">Adresse de livraison</h2>
 
         {addresses?.map((addr: any) => (
           <label key={addr.id} className="flex items-start gap-3 cursor-pointer">
@@ -74,16 +74,16 @@ export default function CheckoutPage() {
               onChange={() => setSelectedAddress(addr.id)}
               className="mt-1"
             />
-            <div className={`flex-1 border rounded-lg p-3 transition-colors ${selectedAddress === addr.id ? "border-primary-500 bg-primary-50" : "border-gray-200"}`}>
-              <p className="font-medium text-gray-900">{addr.rue}</p>
-              <p className="text-sm text-gray-600">{addr.codePostal} {addr.ville}, {addr.pays}</p>
-              {addr.principal && <span className="text-xs text-primary-600 font-medium">Adresse principale</span>}
+            <div className={`flex-1 border rounded-lg p-3 transition-colors ${selectedAddress === addr.id ? "border-blue-500 bg-blue-600/20" : "border-zinc-700"}`}>
+              <p className="font-medium text-zinc-100">{addr.rue}</p>
+              <p className="text-sm text-zinc-400">{addr.codePostal} {addr.ville}, {addr.pays}</p>
+              {addr.principal && <span className="text-xs text-blue-400 font-medium">Adresse principale</span>}
             </div>
           </label>
         ))}
 
         {showAddAddress ? (
-          <div className="border border-gray-200 rounded-lg p-4 space-y-3">
+          <div className="border border-zinc-700 rounded-lg p-4 space-y-3">
             <input
               placeholder="Rue"
               value={newAddress.rue}
@@ -122,7 +122,7 @@ export default function CheckoutPage() {
         ) : (
           <button
             onClick={() => setShowAddAddress(true)}
-            className="flex items-center gap-2 text-sm text-primary-600 hover:underline"
+            className="flex items-center gap-2 text-sm text-blue-400 hover:underline"
           >
             <Plus size={14} /> Ajouter une adresse
           </button>
@@ -132,14 +132,14 @@ export default function CheckoutPage() {
       {/* Récapitulatif */}
       {cart && (
         <div className="card space-y-3">
-          <h2 className="font-semibold text-gray-900">Récapitulatif</h2>
+          <h2 className="font-semibold text-zinc-100">Récapitulatif</h2>
           {cart.lignes?.map((item: any) => (
-            <div key={item.id} className="flex justify-between text-sm text-gray-600">
+            <div key={item.id} className="flex justify-between text-sm text-zinc-400">
               <span>{item.productNom} × {item.quantite}</span>
               <span>{item.sousTotal.toFixed(2)} €</span>
             </div>
           ))}
-          <div className="border-t pt-2 flex justify-between font-bold text-gray-900">
+          <div className="border-t pt-2 flex justify-between font-bold text-zinc-100">
             <span>Total TTC</span>
             <span>{cart.totalTTC?.toFixed(2)} €</span>
           </div>

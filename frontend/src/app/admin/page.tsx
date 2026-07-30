@@ -52,14 +52,14 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Administration</h1>
+      <h1 className="text-2xl font-bold text-zinc-100">Administration</h1>
 
-      <div className="flex gap-1 bg-gray-100 p-1 rounded-lg w-fit flex-wrap">
+      <div className="flex gap-1 bg-zinc-800 p-1 rounded-lg w-fit flex-wrap">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === tab.key ? "bg-white text-gray-900 shadow-sm" : "text-gray-600 hover:text-gray-900"}`}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === tab.key ? "bg-zinc-900 text-zinc-100 shadow-sm" : "text-zinc-400 hover:text-zinc-100"}`}
           >
             {tab.label}
           </button>
@@ -71,33 +71,33 @@ export default function AdminDashboardPage() {
         <div className="space-y-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="card text-center">
-              <TrendingUp size={24} className="text-primary-600 mx-auto mb-2" />
-              <p className="text-2xl font-bold text-gray-900">{dashboard.chiffreAffairesGlobal?.toFixed(2)} €</p>
-              <p className="text-xs text-gray-500">Chiffre d'affaires</p>
+              <TrendingUp size={24} className="text-blue-400 mx-auto mb-2" />
+              <p className="text-2xl font-bold text-zinc-100">{dashboard.chiffreAffairesGlobal?.toFixed(2)} €</p>
+              <p className="text-xs text-zinc-500">Chiffre d'affaires</p>
             </div>
             <div className="card text-center">
               <ShoppingBag size={24} className="text-green-500 mx-auto mb-2" />
-              <p className="text-2xl font-bold text-gray-900">{dashboard.totalCommandes}</p>
-              <p className="text-xs text-gray-500">Commandes</p>
+              <p className="text-2xl font-bold text-zinc-100">{dashboard.totalCommandes}</p>
+              <p className="text-xs text-zinc-500">Commandes</p>
             </div>
             <div className="card text-center">
               <Users size={24} className="text-blue-500 mx-auto mb-2" />
-              <p className="text-2xl font-bold text-gray-900">{dashboard.totalUtilisateurs}</p>
-              <p className="text-xs text-gray-500">Utilisateurs</p>
+              <p className="text-2xl font-bold text-zinc-100">{dashboard.totalUtilisateurs}</p>
+              <p className="text-xs text-zinc-500">Utilisateurs</p>
             </div>
             <div className="card text-center">
               <Package size={24} className="text-purple-500 mx-auto mb-2" />
-              <p className="text-2xl font-bold text-gray-900">{dashboard.totalProduits}</p>
-              <p className="text-xs text-gray-500">Produits</p>
+              <p className="text-2xl font-bold text-zinc-100">{dashboard.totalProduits}</p>
+              <p className="text-xs text-zinc-500">Produits</p>
             </div>
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Commandes récentes</h3>
+            <h3 className="font-semibold text-zinc-100 mb-3">Commandes récentes</h3>
             <div className="space-y-2">
               {dashboard.commandesRecentes?.map((order: any) => (
                 <div key={order.id} className="card flex items-center justify-between py-2">
-                  <span className="font-mono text-sm text-gray-900">{order.numeroCommande}</span>
+                  <span className="font-mono text-sm text-zinc-100">{order.numeroCommande}</span>
                   <div className="flex items-center gap-3">
                     <span className="text-sm font-medium">{order.totalTTC.toFixed(2)} €</span>
                     <OrderStatusBadge status={order.statut} />
@@ -115,16 +115,16 @@ export default function AdminDashboardPage() {
           {users?.map((user: any) => (
             <div key={user.id} className="card flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">{user.prenom} {user.nom}</p>
-                <p className="text-sm text-gray-500">{user.email} — {user.role}</p>
+                <p className="font-medium text-zinc-100">{user.prenom} {user.nom}</p>
+                <p className="text-sm text-zinc-500">{user.email} — {user.role}</p>
               </div>
               <div className="flex items-center gap-3">
-                <span className={`text-xs font-medium px-2 py-1 rounded-full ${user.actif ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                <span className={`text-xs font-medium px-2 py-1 rounded-full ${user.actif ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400"}`}>
                   {user.actif ? "Actif" : "Inactif"}
                 </span>
                 <button
                   onClick={() => toggleUserMutation.mutate(user.id)}
-                  className="text-gray-400 hover:text-primary-600 transition-colors"
+                  className="text-zinc-500 hover:text-blue-400 transition-colors"
                   title={user.actif ? "Désactiver" : "Activer"}
                 >
                   {user.actif ? <XCircle size={18} /> : <CheckCircle size={18} />}
@@ -141,8 +141,8 @@ export default function AdminDashboardPage() {
           {orders?.map((order: any) => (
             <div key={order.id} className="card flex items-center justify-between">
               <div>
-                <p className="font-mono font-bold text-gray-900 text-sm">{order.numeroCommande}</p>
-                <p className="text-sm text-gray-500">{order.totalTTC.toFixed(2)} €</p>
+                <p className="font-mono font-bold text-zinc-100 text-sm">{order.numeroCommande}</p>
+                <p className="text-sm text-zinc-500">{order.totalTTC.toFixed(2)} €</p>
               </div>
               <OrderStatusBadge status={order.statut} />
             </div>
@@ -153,23 +153,23 @@ export default function AdminDashboardPage() {
       {/* Avis à modérer */}
       {activeTab === "reviews" && (
         <div className="space-y-3">
-          <h2 className="font-semibold text-gray-900">Avis en attente de modération</h2>
-          {pendingReviews?.length === 0 && <p className="text-gray-500 text-sm">Aucun avis en attente</p>}
+          <h2 className="font-semibold text-zinc-100">Avis en attente de modération</h2>
+          {pendingReviews?.length === 0 && <p className="text-zinc-500 text-sm">Aucun avis en attente</p>}
           {pendingReviews?.map((review: any) => (
             <div key={review.id} className="card space-y-2">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-gray-900 text-sm">{review.customerNom}</p>
-                  <p className="text-xs text-gray-500">Note: {review.note}/5</p>
+                  <p className="font-medium text-zinc-100 text-sm">{review.customerNom}</p>
+                  <p className="text-xs text-zinc-500">Note: {review.note}/5</p>
                 </div>
                 <button
                   onClick={() => approveReviewMutation.mutate(review.id)}
-                  className="flex items-center gap-1 text-sm text-green-600 hover:underline"
+                  className="flex items-center gap-1 text-sm text-green-400 hover:underline"
                 >
                   <CheckCircle size={14} /> Approuver
                 </button>
               </div>
-              {review.commentaire && <p className="text-sm text-gray-600">{review.commentaire}</p>}
+              {review.commentaire && <p className="text-sm text-zinc-400">{review.commentaire}</p>}
             </div>
           ))}
         </div>
