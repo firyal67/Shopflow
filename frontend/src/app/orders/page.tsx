@@ -61,7 +61,7 @@ export default function OrdersPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <p className="font-bold text-zinc-100">{order.totalTTC.toFixed(2)} €</p>
+              <p className="font-bold text-zinc-100">{order.totalTTC.toFixed(2)} DT</p>
               <Link
                 href={`/orders/${order.id}`}
                 className="text-sm text-amber-400 hover:underline"

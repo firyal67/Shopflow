@@ -174,7 +174,7 @@ export default function SellerDashboardPage() {
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-medium text-zinc-500 mb-1 block">Prix (€)</label>
+                          <label className="text-xs font-medium text-zinc-500 mb-1 block">Prix (DT)</label>
                           <input
                             type="number" step="0.01" min="0"
                             value={editForm.prix}
@@ -183,7 +183,7 @@ export default function SellerDashboardPage() {
                           />
                         </div>
                         <div>
-                          <label className="text-xs font-medium text-zinc-500 mb-1 block">Prix promo (€)</label>
+                          <label className="text-xs font-medium text-zinc-500 mb-1 block">Prix promo (DT)</label>
                           <input
                             type="number" step="0.01" min="0"
                             value={editForm.prixPromo}
@@ -270,10 +270,10 @@ export default function SellerDashboardPage() {
                         </div>
 
                         <div className="flex items-center gap-3 mt-2 flex-wrap">
-                          <span className="font-bold text-zinc-100 text-sm">{Number(p.prix).toFixed(2)} €</span>
+                          <span className="font-bold text-zinc-100 text-sm">{Number(p.prix).toFixed(2)} DT</span>
                           {p.prixPromo && (
                             <span className="text-xs bg-red-500/10 text-red-400 px-2 py-0.5 rounded-full font-medium">
-                              Promo : {Number(p.prixPromo).toFixed(2)} €
+                              Promo : {Number(p.prixPromo).toFixed(2)} DT
                             </span>
                           )}
                           <span className="text-xs text-zinc-500">Stock : <strong className={p.stock < 5 ? "text-red-400" : "text-zinc-100"}>{p.stock}</strong></span>
@@ -317,7 +317,7 @@ export default function SellerDashboardPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="card text-center">
               <TrendingUp size={24} className="text-amber-400 mx-auto mb-1" />
-              <p className="text-2xl font-bold text-amber-400">{Number(dashboard.revenus ?? 0).toFixed(2)} €</p>
+              <p className="text-2xl font-bold text-amber-400">{Number(dashboard.revenus ?? 0).toFixed(2)} DT</p>
               <p className="text-sm text-zinc-500">Revenus</p>
             </div>
             <div className="card text-center">
@@ -366,7 +366,7 @@ export default function SellerDashboardPage() {
                     <p className="text-xs text-zinc-500">{new Date(order.dateCommande).toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="font-bold text-zinc-100">{Number(order.totalTTC).toFixed(2)} €</span>
+                    <span className="font-bold text-zinc-100">{Number(order.totalTTC).toFixed(2)} DT</span>
                     <OrderStatusBadge status={order.statut} />
                   </div>
                 </div>
@@ -375,7 +375,7 @@ export default function SellerDashboardPage() {
                     {order.lignes.map((item: any) => (
                       <div key={item.id} className="flex justify-between text-sm text-zinc-400">
                         <span>{item.productNom} {item.variantValeur ? `(${item.variantValeur})` : ""} × {item.quantite}</span>
-                        <span>{Number(item.sousTotal).toFixed(2)} €</span>
+                        <span>{Number(item.sousTotal).toFixed(2)} DT</span>
                       </div>
                     ))}
                   </div>

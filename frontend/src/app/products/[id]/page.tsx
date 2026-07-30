@@ -9,6 +9,7 @@ import { useAuthStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
 import { useState, useEffect } from "react";
 import { ShoppingCart, Package } from "lucide-react";
+import { useToast } from "@/components/ui/Toast";
 import Image from "next/image";
 
 export default function ProductDetailPage() {
@@ -18,6 +19,7 @@ export default function ProductDetailPage() {
   const [selectedVariant, setSelectedVariant] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [addingToCart, setAddingToCart] = useState(false);
+  const { toast } = useToast();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
@@ -43,8 +45,9 @@ export default function ProductDetailPage() {
         quantite: 1,
       });
       setCart({ items: data.lignes, totalTTC: data.totalTTC, itemCount: data.lignes?.reduce((acc: number, i: any) => acc + i.quantite, 0) ?? 0 });
+      toast("Ajouté au panier ✓", "success");
     } catch (e: any) {
-      alert(e.response?.data?.message || "Erreur lors de l'ajout au panier");
+      toast(e.response?.data?.message || "Erreur lors de l'ajout au panier", "error");
     } finally {
       setAddingToCart(false);
     }
@@ -116,9 +119,9 @@ export default function ProductDetailPage() {
             </span>
           </div>
           <div className="flex items-baseline gap-3">
-            <span className="text-3xl font-bold text-zinc-100">{currentPrice.toFixed(2)} €</span>
+            <span className="text-3xl font-bold text-zinc-100">{currentPrice.toFixed(2)} DT</span>
             {product.enPromotion && (
-              <span className="text-xl text-zinc-500 line-through">{product.prix.toFixed(2)} €</span>
+              <span className="text-xl text-zinc-500 line-through">{product.prix.toFixed(2)} DT</span>
             )}
           </div>
           {product.description && (
@@ -139,7 +142,7 @@ export default function ProductDetailPage() {
                     }`}
                   >
                     {v.valeur}
-                    {v.prixDelta > 0 && ` (+${v.prixDelta.toFixed(2)}€)`}
+                    {v.prixDelta > 0 && ` (+${v.prixDelta.toFixed(2)} DT)`}
                   </button>
                 ))}
               </div>

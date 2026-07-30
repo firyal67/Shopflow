@@ -6,7 +6,7 @@ import { z } from "zod";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useToast } from "@/components/ui/Toast";
 
 const schema = z.object({
   email: z.string().email("Email invalide"),
@@ -33,7 +33,7 @@ type FormData = z.infer<typeof schema>;
 export default function RegisterPage() {
   const { register: registerUser } = useAuth();
   const router = useRouter();
-  const [error, setError] = useState("");
+  const { toast } = useToast();
 
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -43,12 +43,11 @@ export default function RegisterPage() {
   const role = watch("role");
 
   const onSubmit = async (data: FormData) => {
-    setError("");
     try {
       await registerUser(data);
       router.push(data.role === "SELLER" ? "/seller" : "/");
     } catch (err: any) {
-      setError(err.response?.data?.message || "Erreur lors de l'inscription");
+      toast(err.response?.data?.message || "Erreur lors de l'inscription", "error");
     }
   };
 
@@ -56,12 +55,6 @@ export default function RegisterPage() {
     <div className="max-w-md mx-auto mt-8">
       <div className="card">
         <h1 className="section-title mb-6">Créer un compte</h1>
-
-        {error && (
-          <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg mb-4 text-sm">
-            {error}
-          </div>
-        )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Type de compte */}

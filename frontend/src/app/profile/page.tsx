@@ -86,7 +86,7 @@ export default function ProfilePage() {
           <div key={order.id} className="flex items-center justify-between text-sm border border-zinc-800 rounded-lg p-3">
             <div>
               <p className="font-mono font-bold text-zinc-100">{order.numeroCommande}</p>
-              <p className="text-zinc-500">{order.totalTTC.toFixed(2)} €</p>
+              <p className="text-zinc-500">{order.totalTTC.toFixed(2)} DT</p>
             </div>
             <div className="flex items-center gap-3">
               <span className={`${

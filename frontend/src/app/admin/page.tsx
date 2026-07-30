@@ -72,7 +72,7 @@ export default function AdminDashboardPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="card text-center">
               <TrendingUp size={24} className="text-amber-400 mx-auto mb-2" />
-              <p className="text-2xl font-bold text-zinc-100">{dashboard.chiffreAffairesGlobal?.toFixed(2)} €</p>
+              <p className="text-2xl font-bold text-zinc-100">{dashboard.chiffreAffairesGlobal?.toFixed(2)} DT</p>
               <p className="text-xs text-zinc-500">Chiffre d'affaires</p>
             </div>
             <div className="card text-center">
@@ -99,7 +99,7 @@ export default function AdminDashboardPage() {
                 <div key={order.id} className="card flex items-center justify-between py-2">
                   <span className="font-mono text-sm text-zinc-100">{order.numeroCommande}</span>
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium">{order.totalTTC.toFixed(2)} €</span>
+                    <span className="text-sm font-medium">{order.totalTTC.toFixed(2)} DT</span>
                     <OrderStatusBadge status={order.statut} />
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export default function AdminDashboardPage() {
             <div key={order.id} className="card flex items-center justify-between">
               <div>
                 <p className="font-mono font-bold text-zinc-100 text-sm">{order.numeroCommande}</p>
-                <p className="text-sm text-zinc-500">{order.totalTTC.toFixed(2)} €</p>
+                <p className="text-sm text-zinc-500">{order.totalTTC.toFixed(2)} DT</p>
               </div>
               <OrderStatusBadge status={order.statut} />
             </div>

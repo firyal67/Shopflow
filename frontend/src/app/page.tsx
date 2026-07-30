@@ -9,6 +9,7 @@ import { ProductCardSkeleton } from "@/components/ui/Skeleton";
 import { useAuthStore } from "@/store/authStore";
 import { useCart } from "@/hooks/useCart";
 import { ShoppingBag, Truck, Shield, RotateCcw, Zap, ArrowRight, Sparkles, Star } from "lucide-react";
+import { useToast } from "@/components/ui/Toast";
 
 const CATEGORY_ICONS: Record<string, string> = {
   "Vêtements": "👗",
@@ -30,6 +31,7 @@ const CATEGORY_ICONS: Record<string, string> = {
 export default function HomePage() {
   const { user } = useAuthStore();
   const { addToCart } = useCart();
+  const { toast } = useToast();
 
   const [topProducts, setTopProducts] = useState<Product[]>([]);
   const [promoProducts, setPromoProducts] = useState<Product[]>([]);
@@ -55,8 +57,8 @@ export default function HomePage() {
 
   const handleAddToCart = async (product: Product) => {
     if (!user || user.role !== "CUSTOMER") return;
-    try { await addToCart(product.id, 1); }
-    catch (e: any) { alert(e.response?.data?.message || "Erreur lors de l'ajout"); }
+    try { await addToCart(product.id, 1); toast("Ajouté au panier ✓", "success"); }
+    catch (e: any) { toast(e.response?.data?.message || "Erreur lors de l'ajout", "error"); }
   };
 
   return (

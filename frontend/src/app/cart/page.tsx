@@ -129,7 +129,7 @@ export default function CartPage() {
               {item.variantAttribut && (
                 <p className="text-sm text-zinc-500">{item.variantAttribut}: {item.variantValeur}</p>
               )}
-              <p className="text-amber-400 font-semibold">{Number(item.prixUnitaire).toFixed(2)} €</p>
+              <p className="text-amber-400 font-semibold">{Number(item.prixUnitaire).toFixed(2)} DT</p>
             </div>
 
             <div className="flex flex-col items-end gap-2">
@@ -159,7 +159,7 @@ export default function CartPage() {
                 </button>
               </div>
 
-              <p className="font-bold text-zinc-100">{Number(item.sousTotal).toFixed(2)} €</p>
+              <p className="font-bold text-zinc-100">{Number(item.sousTotal).toFixed(2)} DT</p>
             </div>
           </div>
         ))}
@@ -204,21 +204,21 @@ export default function CartPage() {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between text-zinc-400">
               <span>Sous-total</span>
-              <span>{Number(cart?.sousTotal ?? 0).toFixed(2)} €</span>
+              <span>{Number(cart?.sousTotal ?? 0).toFixed(2)} DT</span>
             </div>
             {cart?.remiseCoupon > 0 && (
               <div className="flex justify-between text-green-400">
                 <span>Remise</span>
-                <span>-{Number(cart.remiseCoupon).toFixed(2)} €</span>
+                <span>-{Number(cart.remiseCoupon).toFixed(2)} DT</span>
               </div>
             )}
             <div className="flex justify-between text-zinc-400">
               <span>Livraison</span>
-              <span>{cart?.fraisLivraison === 0 ? "Gratuite" : `${Number(cart?.fraisLivraison ?? 0).toFixed(2)} €`}</span>
+              <span>{cart?.fraisLivraison === 0 ? "Gratuite" : `${Number(cart?.fraisLivraison ?? 0).toFixed(2)} DT`}</span>
             </div>
             <div className="border-t border-zinc-700 pt-2 flex justify-between font-bold text-zinc-100 text-base">
               <span>Total TTC</span>
-              <span>{Number(cart?.totalTTC ?? 0).toFixed(2)} €</span>
+              <span>{Number(cart?.totalTTC ?? 0).toFixed(2)} DT</span>
             </div>
           </div>
 

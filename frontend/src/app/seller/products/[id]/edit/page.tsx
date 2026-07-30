@@ -102,22 +102,22 @@ export default function EditProductPage() {
   const allCategories = flattenCategories(categories ?? []);
 
   if (isLoading) {
-    return <div className="space-y-4 animate-pulse">{Array(4).fill(0).map((_, i) => <div key={i} className="h-16 bg-gray-200 rounded-xl" />)}</div>;
+    return <div className="space-y-4 animate-pulse">{Array(4).fill(0).map((_, i) => <div key={i} className="h-16 bg-zinc-800 rounded-xl" />)}</div>;
   }
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="flex items-center gap-3">
-        <Link href="/seller" className="text-gray-400 hover:text-gray-600">
+        <Link href="/seller" className="text-zinc-400 hover:text-zinc-300">
           <ArrowLeft size={20} />
         </Link>
-        <h1 className="text-2xl font-bold text-gray-900">Modifier le produit</h1>
+        <h1 className="text-2xl font-bold text-zinc-100">Modifier le produit</h1>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Infos de base */}
         <div className="card space-y-4">
-          <h2 className="font-semibold text-gray-900">Informations générales</h2>
+          <h2 className="font-semibold text-zinc-100">Informations générales</h2>
 
           <div>
             <label className="label">Nom du produit *</label>
@@ -132,12 +132,12 @@ export default function EditProductPage() {
 
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="label">Prix (€) *</label>
+              <label className="label">Prix (DT) *</label>
               <input {...register("prix")} type="number" step="0.01" className="input" />
               {errors.prix && <p className="text-red-500 text-xs mt-1">{errors.prix.message}</p>}
             </div>
             <div>
-              <label className="label">Prix promo (€)</label>
+              <label className="label">Prix promo (DT)</label>
               <input {...register("prixPromo")} type="number" step="0.01" className="input" />
             </div>
             <div>
@@ -151,7 +151,7 @@ export default function EditProductPage() {
 
         {/* Gestionnaire d'images */}
         <div className="card space-y-3">
-          <h2 className="font-semibold text-gray-900">Photos du produit</h2>
+          <h2 className="font-semibold text-zinc-100">Photos du produit</h2>
           <Controller
             control={control}
             name="images"
@@ -167,7 +167,7 @@ export default function EditProductPage() {
 
         {/* Catégories */}
         <div className="card space-y-3">
-          <h2 className="font-semibold text-gray-900">Catégories *</h2>
+          <h2 className="font-semibold text-zinc-100">Catégories *</h2>
           {errors.categoryIds && <p className="text-red-500 text-xs">{errors.categoryIds.message}</p>}
           <div className="grid grid-cols-2 gap-2">
             {allCategories.map((cat) => (
@@ -176,9 +176,9 @@ export default function EditProductPage() {
                   type="checkbox"
                   value={cat.id}
                   {...register("categoryIds")}
-                  className="rounded border-gray-300 text-primary-600"
+                  className="rounded border-zinc-600 text-amber-500"
                 />
-                <span className="text-gray-700">{cat.nom}</span>
+                <span className="text-zinc-300">{cat.nom}</span>
               </label>
             ))}
           </div>
@@ -187,11 +187,11 @@ export default function EditProductPage() {
         {/* Variantes */}
         <div className="card space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-gray-900">Variantes</h2>
+            <h2 className="font-semibold text-zinc-100">Variantes</h2>
             <button
               type="button"
               onClick={() => append({ attribut: "", valeur: "", stockSupplementaire: 0, prixDelta: 0 })}
-              className="flex items-center gap-1 text-sm text-primary-600 hover:underline"
+              className="flex items-center gap-1 text-sm text-amber-400 hover:text-amber-300"
             >
               <Plus size={14} /> Ajouter
             </button>
@@ -213,7 +213,7 @@ export default function EditProductPage() {
               </div>
               <div className="flex gap-2 items-end">
                 <div className="flex-1">
-                  <label className="label text-xs">Prix +€</label>
+                  <label className="label text-xs">Prix +DT</label>
                   <input {...register(`variants.${index}.prixDelta`)} type="number" step="0.01" className="input text-sm" />
                 </div>
                 <button type="button" onClick={() => remove(index)} className="p-2 text-red-400 hover:text-red-600 mb-0.5">

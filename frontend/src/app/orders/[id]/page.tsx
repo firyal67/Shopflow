@@ -65,9 +65,9 @@ export default function OrderDetailPage() {
               {item.variantAttribut && (
                 <p className="text-xs text-zinc-500">{item.variantAttribut}: {item.variantValeur}</p>
               )}
-              <p className="text-xs text-zinc-500">×{item.quantite} — {item.prixUnitaire.toFixed(2)} €/u</p>
+              <p className="text-xs text-zinc-500">×{item.quantite} — {item.prixUnitaire.toFixed(2)} DT/u</p>
             </div>
-            <p className="font-semibold text-zinc-100">{item.sousTotal.toFixed(2)} €</p>
+            <p className="font-semibold text-zinc-100">{item.sousTotal.toFixed(2)} DT</p>
 
             {canReview && (
               <button
@@ -122,19 +122,19 @@ export default function OrderDetailPage() {
 
       <div className="card space-y-2">
         <div className="flex justify-between text-sm text-zinc-400">
-          <span>Sous-total</span><span>{order.sousTotal.toFixed(2)} €</span>
+          <span>Sous-total</span><span>{order.sousTotal.toFixed(2)} DT</span>
         </div>
         {order.remiseCoupon > 0 && (
           <div className="flex justify-between text-sm text-green-400">
-            <span>Remise ({order.couponCode})</span><span>-{order.remiseCoupon.toFixed(2)} €</span>
+            <span>Remise ({order.couponCode})</span><span>-{order.remiseCoupon.toFixed(2)} DT</span>
           </div>
         )}
         <div className="flex justify-between text-sm text-zinc-400">
           <span>Livraison</span>
-          <span>{order.fraisLivraison === 0 ? "Gratuite" : `${order.fraisLivraison.toFixed(2)} €`}</span>
+          <span>{order.fraisLivraison === 0 ? "Gratuite" : `${order.fraisLivraison.toFixed(2)} DT`}</span>
         </div>
         <div className="border-t pt-2 flex justify-between font-bold text-zinc-100">
-          <span>Total TTC</span><span>{order.totalTTC.toFixed(2)} €</span>
+          <span>Total TTC</span><span>{order.totalTTC.toFixed(2)} DT</span>
         </div>
       </div>
 

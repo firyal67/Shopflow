@@ -10,6 +10,7 @@ import { Category } from "@/types";
 import { Plus, Trash2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import ImageManager from "@/components/ui/ImageManager";
+import { useToast } from "@/components/ui/Toast";
 
 const variantSchema = z.object({
   attribut: z.string().min(1, "Attribut requis"),
@@ -33,6 +34,7 @@ type ProductForm = z.infer<typeof productSchema>;
 
 export default function NewProductPage() {
   const router = useRouter();
+  const { toast } = useToast();
 
   const { data: categories } = useQuery({
     queryKey: ["categories"],
@@ -75,7 +77,7 @@ export default function NewProductPage() {
     onSuccess: () => router.push("/seller"),
     onError: (e: any) => {
       const msg = e.response?.data?.message || e.message || "Erreur inconnue";
-      alert("Erreur: " + msg);
+      toast("Erreur: " + msg, "error");
     },
   });
 
@@ -85,16 +87,16 @@ export default function NewProductPage() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="flex items-center gap-3">
-        <Link href="/seller" className="text-gray-400 hover:text-gray-600">
+        <Link href="/seller" className="text-zinc-400 hover:text-zinc-300">
           <ArrowLeft size={20} />
         </Link>
-        <h1 className="text-2xl font-bold text-gray-900">Nouveau produit</h1>
+        <h1 className="text-2xl font-bold text-zinc-100">Nouveau produit</h1>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Infos de base */}
         <div className="card space-y-4">
-          <h2 className="font-semibold text-gray-900">Informations générales</h2>
+          <h2 className="font-semibold text-zinc-100">Informations générales</h2>
 
           <div>
             <label className="label">Nom du produit *</label>
@@ -109,12 +111,12 @@ export default function NewProductPage() {
 
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="label">Prix (€) *</label>
+              <label className="label">Prix (DT) *</label>
               <input {...register("prix")} type="number" step="0.01" className="input" placeholder="0.00" />
               {errors.prix && <p className="text-red-500 text-xs mt-1">{errors.prix.message}</p>}
             </div>
             <div>
-              <label className="label">Prix promo (€)</label>
+              <label className="label">Prix promo (DT)</label>
               <input {...register("prixPromo")} type="number" step="0.01" className="input" placeholder="0.00" />
             </div>
             <div>
@@ -127,7 +129,7 @@ export default function NewProductPage() {
 
         {/* Gestionnaire d'images */}
         <div className="card space-y-3">
-          <h2 className="font-semibold text-gray-900">Photos du produit</h2>
+          <h2 className="font-semibold text-zinc-100">Photos du produit</h2>
           <Controller
             control={control}
             name="images"
@@ -143,7 +145,7 @@ export default function NewProductPage() {
 
         {/* Catégories */}
         <div className="card space-y-3">
-          <h2 className="font-semibold text-gray-900">Catégories *</h2>
+          <h2 className="font-semibold text-zinc-100">Catégories *</h2>
           {errors.categoryIds && <p className="text-red-500 text-xs">{errors.categoryIds.message}</p>}
           <div className="grid grid-cols-2 gap-2">
             {allCategories.map((cat) => (
@@ -152,9 +154,9 @@ export default function NewProductPage() {
                   type="checkbox"
                   value={cat.id}
                   {...register("categoryIds")}
-                  className="rounded border-gray-300 text-primary-600"
+                  className="rounded border-zinc-600 text-amber-500"
                 />
-                <span className="text-gray-700">{cat.nom}</span>
+                <span className="text-zinc-300">{cat.nom}</span>
               </label>
             ))}
           </div>
@@ -163,11 +165,11 @@ export default function NewProductPage() {
         {/* Variantes */}
         <div className="card space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-gray-900">Variantes</h2>
+            <h2 className="font-semibold text-zinc-100">Variantes</h2>
             <button
               type="button"
               onClick={() => append({ attribut: "", valeur: "", stockSupplementaire: 0, prixDelta: 0 })}
-              className="flex items-center gap-1 text-sm text-primary-600 hover:underline"
+              className="flex items-center gap-1 text-sm text-amber-400 hover:text-amber-300"
             >
               <Plus size={14} /> Ajouter
             </button>
@@ -189,7 +191,7 @@ export default function NewProductPage() {
               </div>
               <div className="flex gap-2 items-end">
                 <div className="flex-1">
-                  <label className="label text-xs">Prix +€</label>
+                  <label className="label text-xs">Prix +DT</label>
                   <input {...register(`variants.${index}.prixDelta`)} type="number" step="0.01" className="input text-sm" />
                 </div>
                 <button type="button" onClick={() => remove(index)} className="p-2 text-red-400 hover:text-red-600 mb-0.5">
@@ -201,7 +203,7 @@ export default function NewProductPage() {
         </div>
 
         {mutation.isError && (
-          <p className="text-red-500 text-sm bg-red-50 p-3 rounded-lg">
+          <p className="text-red-500 text-sm bg-red-500/10 p-3 rounded-lg">
             {(mutation.error as any)?.response?.data?.message || "Erreur lors de la création du produit."}
           </p>
         )}

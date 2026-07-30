@@ -13,6 +13,7 @@ import { useAuthStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
 import { useState, useEffect } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
+import { useToast } from "@/components/ui/Toast";
 
 const SORT_OPTIONS = [
   { label: "Nouveautés", value: "dateCreation,desc" },
@@ -27,6 +28,7 @@ function ProductsContent() {
   const router = useRouter();
   const { user } = useAuthStore();
   const { setCart } = useCartStore();
+  const { toast } = useToast();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
@@ -73,8 +75,9 @@ function ProductsContent() {
     try {
       const { data } = await api.post("/api/cart/items", { productId: product.id, quantite: 1 });
       setCart({ items: data.lignes, totalTTC: data.totalTTC, itemCount: data.lignes?.reduce((acc: number, i: any) => acc + i.quantite, 0) ?? 0 });
+      toast("Ajouté au panier ✓", "success");
     } catch (e: any) {
-      alert(e.response?.data?.message || "Erreur lors de l'ajout au panier");
+      toast(e.response?.data?.message || "Erreur lors de l'ajout au panier", "error");
     }
   };
 
@@ -160,7 +163,7 @@ function ProductsContent() {
 
         {/* Prix */}
         <div>
-          <h4 className="text-sm font-medium text-zinc-400 mb-2">Prix (€)</h4>
+          <h4 className="text-sm font-medium text-zinc-400 mb-2">Prix (DT)</h4>
           <div className="flex gap-2">
             <input
               type="number"
@@ -249,7 +252,7 @@ function ProductsContent() {
             )}
             {(prixMin || prixMax) && (
               <span className="inline-flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-400 text-xs rounded-full">
-                Prix : {prixMin || "0"} – {prixMax || "∞"} €
+                Prix : {prixMin || "0"} – {prixMax || "∞"} DT
                 <button onClick={() => { setPrixMin(""); setPrixMax(""); }}><X size={12} /></button>
               </span>
             )}

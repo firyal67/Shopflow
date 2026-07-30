@@ -136,12 +136,12 @@ export default function CheckoutPage() {
           {cart.lignes?.map((item: any) => (
             <div key={item.id} className="flex justify-between text-sm text-zinc-400">
               <span>{item.productNom} × {item.quantite}</span>
-              <span>{item.sousTotal.toFixed(2)} €</span>
+              <span>{item.sousTotal.toFixed(2)} DT</span>
             </div>
           ))}
           <div className="border-t pt-2 flex justify-between font-bold text-zinc-100">
             <span>Total TTC</span>
-            <span>{cart.totalTTC?.toFixed(2)} €</span>
+            <span>{cart.totalTTC?.toFixed(2)} DT</span>
           </div>
         </div>
       )}
